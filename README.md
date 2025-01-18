@@ -46,4 +46,6 @@ open the favourites and tagged view with a click.
 - 3 Presets of tools to change to
 - Floating Layers menu fully replaces system equivalent except for renaming the layer
 - (New) Changes to a vertical bar when moved to the left/right edge of the screen
-NOTE: the last couple of lines are commented with a ;. This adds an X button to the toolbar to close the document.
+
+#### NOTE: the last couple of lines are commented with a `;`. This adds an X button to the toolbar to close the document. Remove the `;` to add this button
+
