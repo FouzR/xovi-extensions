@@ -17,10 +17,12 @@ These QMDs were tested to work in 3.15/16 and 3.17. Any bugs should be reported 
 
 ### 1. Edit.qmd
 - Adds the ability to delete a stroke once selected by the selection tool.
+[image](images/DelStroke.png)
 
 ### 2. favTagButton.qmd
 - Adds 2 extra buttons to the search/new note floating button on the file explorer that lets you
 open the favourites and tagged view with a click.
+[image](images/favTagButton.png)
 
 ### 3. Gesture.qmd
 - Adds a couple of gestures that are nice-to-have(Note: These have only been tested on right-handed mode. So left-handed mode would behave slightly differently)
@@ -29,13 +31,16 @@ open the favourites and tagged view with a click.
 3. Swipe with two-fingers from the left half of the bottom-edge to swap between eraser and pen
 4. Swipe with two-fingers from the right half of the bottom-edge to swap between selection tool and pen
 5. 4-Finger tap to open the document drawer
+[image](images/Gestures.png)
 
 ### 4. recentsTag.qmd
 - Adds a new menu to the document drawer that shows only tagged files, sort by last modified
+[image](images/RecentsTag.png)
 
 ### 5. selectionBoth.qmd
 - Adds the ability to select everything above the line
- 
+[image](images/selBoth.png)
+
 ### 6. toolbar.qmd
 - Allows adding any tool with a preset colour and thickness
 - Allows changing the added tool order
@@ -47,3 +52,32 @@ open the favourites and tagged view with a click.
 - Floating Layers menu fully replaces system equivalent except for renaming the layer
 - (New) Changes to a vertical bar when moved to the left/right edge of the screen
 NOTE: the last couple of lines are commented with a ;. This adds an X button to the toolbar to close the document.
+
+
+[image](images/menu.png)
+*Menu to access the menu*
+
+[image](images/layer.png)
+*Layer menu*
+
+[image](images/toolbarHor.png)
+*Toolbar Default*
+
+[image](images/toolbarHorMove.png)
+*Toolbar tool order change*
+
+[image](images/toolbarHorFS.png)
+*Toolbar while in fullscreen*
+
+[image](images/toolbarVer.png)
+*Toolbar when near the side edges**
+
+[image](images/toolbarVerMove.png)
+*Change Order Buttons**
+
+[image](images/toolbarVerFS.png)
+*fullscreen*
+
+[image](images/min.png)
+*Minimized*
+
