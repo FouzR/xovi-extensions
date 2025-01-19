@@ -1,7 +1,8 @@
 # repo of xovi extensions
 
 > [!WARNING]  
-> toolbar.qmd and gesture.qmd is currently broken due to a qmldiff hash issue. For now, they are both unusable. The other mods work fine
+> `toolbar.qmd` and `Gesture.qmd` is currently broken due to a qmldiff hash issue. For now, they are both unusable. The other mods work fine.
+> Use `Gesture-temp-fix.qmd` for now. `toolbar.qmd` is WIP
 
 This Repo consists of multiple Xovi(.qmd) extensions that are QoL improvements to the xochitl interface. This **needs** qt-resource-rebuilder.so to work.
 
