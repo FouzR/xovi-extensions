@@ -626,7 +626,7 @@ AFFECT [[1224665461898798997]]
 					~&7083121450889&~ ~&6504329801&~;
 				}
 				function saveQuickToolFile() {
-					~&197091758&~ xhr =                  new                  XMLHttpRequest();
+					~&197091758&~ xhr =                             new                             XMLHttpRequest();
 					~&197091758&~ ~&6503736259&~ = {
 						quickTool: quickTool,
 						isfloatQuickActive: ~&233745975898428&~.floatbarQuickk,
@@ -650,7 +650,7 @@ AFFECT [[1224665461898798997]]
 					xhr.~&6504279475&~(dataStr);
 				}
 				function loadQuickToolFile() {
-					~&197091758&~ xhr =                  new                  XMLHttpRequest();
+					~&197091758&~ xhr =                             new                             XMLHttpRequest();
 					~&5972376&~ (presetState===1){
 					xhr.~&6504147419&~("GET", "file:///home/root/quickTool.json");}
 					~&6503784146&~ ~&5972376&~ (presetState===2){
@@ -1063,7 +1063,7 @@ AFFECT [[1224665461898798997]]
 
 END AFFECT
 
-;      Eraser Button
+;                 Eraser Button
 SLOT floatBarButtons INSERT TEMPLATE MySlotButton{
 	~&5972374&~:floatQuickEraser
 	~&233748328658231&~: ~&233745975898428&~.floatbarQuick
@@ -1077,7 +1077,7 @@ SLOT floatBarButtons INSERT TEMPLATE MySlotButton{
 }
 END SLOT
 
-;     Selection Tool
+;                Selection Tool
 SLOT floatBarButtons INSERT TEMPLATE MySlotButton{
 	~&5972374&~:floatQuickSelect
 	~&233748328658231&~: ~&233745975898428&~.floatbarQuick
@@ -1162,11 +1162,11 @@ SLOT floatBarButtonsEnd INSERT TEMPLATE MySlotButton {
 	}
 END SLOT
 
-  ;  SLOT floatBarButtons INSERT TEMPLATE MySlotButton{
-  ;  	~&5972374&~:floatquickClose
-  ;  	~&233748328658231&~: ~&233745975898428&~.floatbarQuick
-  ;  	~&7713561545874130&~: ~&214625660372&~
-  ;  	~&6503917970&~: ~&"233750511668555&~
-  ;  	~&233739427250348&~: {~&15793094956877902211&~.~&214622501183&~()}	
-  ;  }
-  ;  END SLOT
+  ;             SLOT floatBarButtons INSERT TEMPLATE MySlotButton{
+  ;             	~&5972374&~:floatquickClose
+  ;             	~&233748328658231&~: ~&233745975898428&~.floatbarQuick
+  ;             	~&7713561545874130&~: ~&214625660372&~
+  ;             	~&6503917970&~: ~&"233750511668555&~
+  ;             	~&233739427250348&~: {~&15793094956877902211&~.~&214622501183&~()}	
+  ;             }
+  ;             END SLOT
