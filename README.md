@@ -39,6 +39,8 @@ open the favourites and tagged view with a click.
 	3. Diagonal swipe up from the middle of the edge swaps between Eraser tool and pen
 	4. Diagonal swipe down from the middle of the edge swaps between Selection tool and pen
 
+> **_NOTE:_**  The gestures on the edge are mirrored when left-handed.
+
 ![image](images/Gestures.png)
 
 ### 4. recentsTagged.qmd
