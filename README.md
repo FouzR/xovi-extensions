@@ -39,7 +39,7 @@ open the favourites and tagged view with a click.
 	3. Diagonal swipe up from the middle of the edge swaps between Eraser tool and pen
 	4. Diagonal swipe down from the middle of the edge swaps between Selection tool and pen
 
-![image](images/gestures.png)
+![image](images/Gestures.png)
 
 ### 4. recentsTagged.qmd
 - Adds a new menu to the document drawer that shows only tagged files, sorted by last modified
