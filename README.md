@@ -34,10 +34,10 @@ open the favourites and tagged view with a click.
 3. Swipe with two-fingers from the right half of the bottom-edge to swap between selection tool and pen
 4. 4-Finger tap to open the document drawer
 5. The edge while in fullscreen has multiple gestures. 
-	1 Long swipe up/down changes thickness
-	2 Short swipe up/down changes colour depending on the config
-	3 Diagonal swipe up from the middle of the edge swaps between Eraser tool and pen
-	4 Diagonal swipe down from the middle of the edge swaps between Selection tool and pen
+	1. Long swipe up/down changes thickness
+	2. Short swipe up/down changes colour depending on the config
+	3. Diagonal swipe up from the middle of the edge swaps between Eraser tool and pen
+	4. Diagonal swipe down from the middle of the edge swaps between Selection tool and pen
 
 ![image](images/gestures.png)
 
