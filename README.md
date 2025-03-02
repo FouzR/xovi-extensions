@@ -11,7 +11,7 @@ Instructions to install xovi can be found in [here](https://github.com/asivery/r
 
 After which, copy the files to `/home/root/xovi/exthome/qt-resource-rebuilder/` and restart xovi. 
 
-These QMDs were tested to work in 3.15/16 and 3.17. Any bugs should be reported in the repo issues. 
+These QMDs were tested to work in 3.15-3.18. Any bugs should be reported in the repo issues. 
 
 
 ## Extensions
