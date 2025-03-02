@@ -105,7 +105,7 @@ Press and hold the left-most icon
 
 *Toolbar tool order change*
 
-![image](images/toolbarHorFS.png)
+![image](images/toolbar_hor_fs.png)
 
 *Toolbar while in fullscreen*
 
