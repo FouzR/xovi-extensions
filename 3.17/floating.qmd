@@ -641,7 +641,7 @@ AFFECT [[1224665461898798997]]
 						}
 						~&7713561545874130&~: ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~) ? (~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~ && ~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ === ~&254539508423767444&~.~&496319807495899597&~ && ~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ === ~&254539508423767444&~.~&197098340&~ &&~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~): (~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~ &&~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~)
 						~&11058020975532475353&~: {
-							/* Update the parent property*/
+
 							~&197091758&~ hasTrue = ~&214625660372&~
 							~&197085552&~ (~&197091758&~ ~&180978&~ = 0; ~&180978&~ < ~&7713519083900865&~.~&214622615378&~; ~&180978&~++) {
 								~&197091758&~ ~&6503936152&~ = ~&7713519083900865&~.itemAt(~&180978&~)
@@ -652,14 +652,7 @@ AFFECT [[1224665461898798997]]
 							}
 							isQuickPenSelected = hasTrue
 						}
-						/*onSelectedChanged: {*/
-						/*	if (selected && !isQuickPenSelected){*/
-					/*			isQuickPenSelected = true;*/
-					/*		}*/
-					/*		else {*/
-					/*			isQuickPenSelected = false;*/
-					/*		}*/
-					/*	}*/
+
 						~&254480451320573660&~.onDestruction:{
 							isQuickPenSelected = ~&214625660372&~;
 						}
@@ -782,7 +775,7 @@ AFFECT [[1224665461898798997]]
 					~&233748328658231&~: ~&233745975898428&~.floatbarQuick && !~&15793094956877902211&~.~&8399487686344347164&~ && !floatQuick.moveTool 
 					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
 					~&6504337259&~: floatQuick.~&6504337259&~
-					/*iconSource: "qrc:/ark/icons/plus_circle"*/
+
 					~&8399601734642709923&~: {
 							~&214622607920&~ toolIcons = {
 								15: ~&"12472390807386460417&~,
@@ -963,207 +956,7 @@ AFFECT [[1224665461898798997]]
 						}
 				}
 				}
-				/*
-				ArkControls.ContextualMenu.Button {
-					id: floatquickAdd
-					visible: toolbar.floatbarQuick && !documentView.fullscreen && !floatQuick.moveTool 
-					focusPolicy: Qt.NoFocus
-					type: floatQuick.type
-					//iconSource: "qrc:/ark/icons/plus_circle"
-					iconSource: {
-							const toolIcons = {
-								15: "qrc:/ark/icons/ballpoint_tip",
-								17: "qrc:/ark/icons/fineliner_tip",
-								18: "qrc:/ark/icons/highlighter_tip", 
-								14: "qrc:/ark/icons/pencil_tip",
-								13: "qrc:/ark/icons/mechanical_pencil_tip",
-								21: "qrc:/ark/icons/calligraphy_pen_tip",
-								16: "qrc:/ark/icons/marker_tip",
-								23: "qrc:/ark/icons/shader_tip",
-								12: "qrc:/ark/icons/paintbrush_tip",
-								8: "qrc:/ark/icons/erase_selection",
-								6: "qrc:/ark/icons/eraser",
-								11: "qrc:/ark/icons/selection_tool"
-							};
-
-							return toolIcons[documentViewTools.activePen.tool];
-					}
-					Text{
-							anchors.top:parent.top
-							anchors.left:parent.left
-							leftPadding: 5
-							color: "black"
-							text: (documentViewTools.activePen.thickness)
-							visible: documentViewTools.activePen.tool != 8 && documentViewTools.activePen.tool !=11 && !documentView.timeOutBeforeMovingTools
-							font.family: "Helvetica"
-							font.weight: Font.Bold
-							font.pointSize: 12
-					}
-					Rectangle{
-							visible: gridLayoutObject.flow === GridLayout.LeftToRight  && documentViewTools.isWritingTool(documentViewTools.activePen.tool) && !documentView.timeOutBeforeMovingTools
-							color: {
-								const colorMaps = {
-									23: {
-										1075912220: "gray",
-										1946071552: "orangered",
-										2160099282: "magenta",
-										1295010528: "deepskyblue",
-										1724002610: "red", 
-										2157042289: "forestgreen",
-										1945823001: "yellow",
-										1718932200: "cyan"
-									},
-									18: {
-										4294962549: "yellow",
-										4290702078: "deepskyblue", 
-										4294090495: "mediumvioletred",
-										4294951820: "orangered",
-										4289527685: "forestgreen",
-										4291282886: "gray"
-									}
-								};
-
-								const paletteColors = {
-									0: "black",
-									1: "gray", 
-									2: "white",
-									6: "blue",
-									7: "red",
-									10: "limegreen", 
-									13: "yellow",
-									11: "cyan", 
-									12: "magenta"
-								};
-
-								if (documentViewTools.activePen.tool === 23 || documentViewTools.activePen.tool === 18) {
-									return colorMaps[documentViewTools.activePen.tool][documentViewTools.activePen.colorCode] || "beige";
-								}
-
-								return paletteColors[documentViewTools.activePen.color] || "beige";
-							}
-							anchors.bottom: parent.bottom
-							width: parent.width
-							height: (parent.height/5)
-							antialiasing: false
-							border.color: "white"
-							border.width: 5
-						}
-						Rectangle{
-							visible: gridLayoutObject.flow === GridLayout.TopToBottom && documentViewTools.isWritingTool(documentViewTools.activePen.tool)&& !documentView.timeOutBeforeMovingTools
-							color: {
-								const colorMaps = {
-									23: {
-										1075912220: "gray",
-										1946071552: "orangered",
-										2160099282: "magenta",
-										1295010528: "deepskyblue",
-										1724002610: "red", 
-										2157042289: "forestgreen",
-										1945823001: "yellow",
-										1718932200: "cyan"
-									},
-									18: {
-										4294962549: "yellow",
-										4290702078: "deepskyblue", 
-										4294090495: "mediumvioletred",
-										4294951820: "orangered",
-										4289527685: "forestgreen",
-										4291282886: "gray"
-									}
-								};
-
-								const paletteColors = {
-									0: "black",
-									1: "gray", 
-									2: "white",
-									6: "blue",
-									7: "red",
-									10: "limegreen", 
-									13: "yellow",
-									11: "cyan", 
-									12: "magenta"
-								};
-
-								if (documentViewTools.activePen.tool === 23 ||documentViewTools.activePen.tool === 18) {
-									return colorMaps[documentViewTools.activePen.tool][documentViewTools.activePen.colorCode] || "beige";
-								}
-
-								return paletteColors[documentViewTools.activePen.color] || "beige";
-							}
-							anchors.right:  parent.right
-							width:          (parent.width/5)
-							height:         (parent.height)
-							antialiasing: false
-							border.color: "white"
-							border.width: 5
-						}
-					Rectangle {
-							anchors.fill: parent
-							color: "white"
-							visible: documentView.timeOutBeforeMovingTools
-					}
-					Rectangle {
-						visible: !documentView.timeOutBeforeMovingTools
-						width: parent.width/4
-						height: parent.height/4
-						anchors.top: parent.top
-						anchors.right: parent.right
-						Rectangle{
-							color: "black"
-							
-							width: parent.width/6
-							height: parent.height
-							anchors.horizontalCenter : parent.horizontalCenter
-						}
-						Rectangle{
-							color: "black"
-							width: parent.width
-							height: parent.height/6
-							anchors.verticalCenter : parent.verticalCenter
-						}
-						
-					}
-					
-					
-					
-					onClicked: () => {
-							if (documentViewTools.isWritingTool(documentViewTools.activePen.tool)){
-							floatQuick.addNewTool(documentViewTools.activeTool, documentViewTools.activePen.tool,documentViewTools.activePen.colorCode,documentViewTools.activePen.color, documentViewTools.activePen.thickness);
-							floatQuick.saveQuickToolFile();
-							} 
-							else {
-								floatQuick.addNewToolPlus(documentViewTools.activeTool, documentViewTools.activePen.tool,documentViewTools.activePen.thickness);
-							}
-				}
-				}
-				ArkControls.ContextualMenu.Button {
-					id: floatquickRemove
-					visible: toolbar.floatbarQuick && !documentView.fullscreen && !floatQuick.moveTool
-					Rectangle {
-							anchors.fill: parent
-							color: "white"
-							visible: documentView.timeOutBeforeMovingTools
-					}
-					focusPolicy: Qt.NoFocus
-					type: floatQuick.type
-					iconSource: "qrc:/ark/icons/x_circle"
-									
-					Rectangle {
-							anchors.fill: parent
-							color: "white"
-							visible: documentView.timeOutBeforeMovingTools
-					}
-					onClicked: () => {floatQuick.quickTool = floatQuick.quickTool.filter(
-					function(item) {
-									return !(documentViewTools.isWritingTool(item.tool)?(((item.tool == documentViewTools.activePen.tool) && 
-										    (item.rgb == documentViewTools.activePen.colorCode) && 
-										    (item.paletteEnum == documentViewTools.activePen.color) &&	
-											(item.thickness == documentViewTools.activePen.thickness))):
-											(item.tool == documentViewTools.activePen.tool && item.type == documentViewTools.activeTool && item.thickness == documentViewTools.activePen.thickness));})
-											floatQuick.saveQuickToolFile();}
-				
-				}
-				*/
+			
 				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~ {
 					~&5972374&~: floatquickMoveLeft
 					~&233748328658231&~: ~&233745975898428&~.floatbarQuick && !~&15793094956877902211&~.~&8399487686344347164&~ && floatQuick.moveTool
