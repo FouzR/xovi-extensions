@@ -223,100 +223,7 @@ AFFECT [[2857280009207495592]]
 		TRAVERSE [[6502786168]]#[[233745975898428]] > [[8398044571386570029]]
        LOCATE BEFORE [[7712155293725601]][.[[8399878573055752961]]=[["3575461827597527778]]]
         INSERT {
-			/*
-				ToolbarTool{
-					id: floatBarSettings
-					toolTip: noToolTip
-					toolbar: root
-					visible: root.expanded
-					onPressed: root._select(floatBarSettings)
-					iconSource: "qrc:/ark/icons/multicolor/toolbar_show"
-					type: ToolbarTool.Type.ToolbarButton
-					foldoutContent: ColumnLayout {
-						id: content
-						spacing: 0
-						width: 420
-						ArkControls.FoldoutSectionHeader {
-							inputLabel: "Floating ToolBar"
-						readonly property  bool tooLong: inputLabel>200
-							antialiasing: root.antialiasing
-							inputWrapMode: tooLong?Text.NoWrap:Text.Wrap
-							inputElide: tooLong?Text.ElideMiddle:Text.ElideNone
-							description: "Made by https://github.com/FouzR"
-						}
-						ArkControls.FoldoutDivider {
-							Layout.fillWidth: true
-						}
-						ArkControls.FoldoutItem {
-							label: "QuickTools"
-							iconSource: "qrc:/ark/icons/three_dots_horisontal"
-							antialiasing: root.antialiasing
-							topDivider: true
-							Layout.fillWidth: true
-							onClicked: {floatBarQuick.toggle();}
-							ArkControls.Toggle {
-								id: floatBarQuick
-								anchors.rightMargin: 20
-								anchors.right: parent.right
-								anchors.verticalCenter: parent.verticalCenter
-								checked: root.floatbarQuickk
-								onCheckedChanged: root.floatbarQuickk = checked
-							}
-						}
-						ArkControls.FoldoutItem {
-							id: quickPresets
-							label: "Preset "+ String(root.presetNumber)
-							iconSource: "qrc:/ark/icons/folder"
-							antialiasing: root.antialiasing
-							topDivider: true
-							Layout.fillWidth: true
-							onClicked: {root.presetNumber = (root.presetNumber == 3) ? 1 : (root.presetNumber == 2 ? 3 : 2)}
-						}
-						ArkControls.FoldoutItem {
-							id: quickPresetSave
-							property string base: "Save Preset"
-							property string baseIcon:"qrc:/ark/icons/import"
-							property string save: "Saved Preset "+ String(root.presetNumber)
-							property string saveIcon:"qrc:/ark/icons/checkmark"
-							iconSource: baseIcon
-							label: base
-							antialiasing: root.antialiasing
-							topDivider: true
-							Layout.fillWidth: true
-							onPressed: {root.presetSave();
-							quickPresetSave.label =save;
-							quickPresetSave.iconSource=saveIcon;}
-							onReleased: {
-							quickPresetSave.label =base;
-							quickPresetSave.iconSource=baseIcon;}
-						}
-						ArkControls.FoldoutItem {
-							label: "Layers"
-							iconSource: "qrc:/ark/icons/layers"
-							antialiasing: root.antialiasing
-							topDivider: true
-							Layout.fillWidth: true
-							onClicked: floatBarLay.toggle()
-							ArkControls.Toggle {
-								id: floatBarLay
-								anchors.right: parent.right
-								anchors.rightMargin: 20
-								anchors.verticalCenter: parent.verticalCenter
-								checked: root.floatbarEnabledLayers
-								onCheckedChanged: root.floatbarEnabledLayers = checked
-							}
-						}
-						ArkControls.FoldoutItem {
-							label: "Reset FloatBar"
-							iconSource: "qrc:/ark/icons/arrow_up"
-							antialiasing: root.antialiasing
-							topDivider: true
-							Layout.fillWidth: true
-							onClicked: {root.resetFloatBarPosition()}
-						}
-					}
-				}
-				*/
+			
 			}
 
 		END TRAVERSE
@@ -486,11 +393,7 @@ AFFECT [[1224665461898798997]]
 							
 							~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
 							~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-							/*Rectangle{*/
-							/*	color: "white"*/
-							/*	anchors.fill: parent*/
-								
-							/*	}*/
+
 							~&6503165774&~
 							{
 							~&6503823200&~.~&7082646817675&~: "Helvetica"
@@ -500,15 +403,12 @@ AFFECT [[1224665461898798997]]
 									~&233748328658231&~: !~&17331784548452830383&~
 									styleColor: ~&"214646069354&~
 									~&233721384511543&~.~&6503816592&~: ~&7083038346995&~ 
-									/*{*/
-									/*	left: parent.left*/
-								/*		verticalCenter: parent.verticalCenter*/
-								/*	}*/
+
 									~&6503823200&~.~&254543734469215886&~: 30
 									~&6504315758&~: ~&8399738572007762814&~+1
 								}
 							
-							/*iconSource: "qrc:/ark/icons/placeholder_"+String(layerIndex+1)*/
+
 							~&7713561545874130&~: ~&17331784548452830383&~
 							~&6503165774&~
 							{
@@ -518,10 +418,7 @@ AFFECT [[1224665461898798997]]
 									~&214622605608&~: ~&"214646069354&~
 									~&233748328658231&~: ~&17331784548452830383&~
 									~&233721384511543&~.~&6503816592&~: ~&7083038346995&~ 
-									/*{*/
-									/*	left: parent.left*/
-								/*		verticalCenter: parent.verticalCenter*/
-								/*	}*/
+
 									~&6503823200&~.~&254543734469215886&~: 30
 									~&6504315758&~: ~&8399738572007762814&~+1
 								}
@@ -1002,8 +899,7 @@ AFFECT [[1224665461898798997]]
 											~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ = ~&254539508423767444&~.~&197098340&~;
 											~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ = ~&254539508423767444&~.~&254549061334391125&~;}
 										~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504326343&~ == 8 || ~&254539508423767444&~.~&6504326343&~ == 6){
-												/*toolbar.eraserToolSelected(modelData.tool);*/
-												/*documentViewTools.eraserPen.tool = modelData.tool;*/
+
 												~&233745975898428&~.selectFloatEraser(~&254539508423767444&~.~&6504326343&~);
 												~&7842069035455457876&~.~&254528381676974702&~.~&254549061334391125&~ = ~&254539508423767444&~.~&254549061334391125&~;
 										}
@@ -1182,4 +1078,5 @@ AFFECT [[1224665461898798997]]
 									floatQuick.saveQuickToolFile();}
 				}}}}
 	END TRAVERSE
+
 END AFFECT
