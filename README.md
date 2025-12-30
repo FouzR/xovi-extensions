@@ -1,4 +1,6 @@
-# repo of xovi extensions
+# A repository of xovi extensions
+
+[![Ko-Fi](https://srv-cdn.himpfen.io/badges/kofi/kofi-flat.svg)](https://ko-fi.com/fouzr)
 
 This Repo consists of multiple Xovi(.qmd) extensions that are QoL improvements to the xochitl interface. This **needs** qt-resource-rebuilder.so to work.
 
