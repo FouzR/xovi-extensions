@@ -19,6 +19,7 @@ After which, copy the files to `/home/root/xovi/exthome/qt-resource-rebuilder/` 
 
 These QMDs were tested to work in 3.15-3.24 . Any bugs should be reported in the repo issues. 
 
+As this project is done entirely in my free time, I'd appreciate support via ko-fi :) 
 
 ## Extensions
 
