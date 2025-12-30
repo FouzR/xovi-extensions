@@ -11,7 +11,7 @@ Instructions to install xovi can be found in [here](https://github.com/asivery/r
 
 After which, copy the files to `/home/root/xovi/exthome/qt-resource-rebuilder/` and restart xovi. 
 
-These QMDs were tested to work in 3.15-3.23 . Any bugs should be reported in the repo issues. 
+These QMDs were tested to work in 3.15-3.24 . Any bugs should be reported in the repo issues. 
 
 
 ## Extensions
@@ -39,11 +39,12 @@ open the favourites and tagged view with a click.
 	3. Diagonal swipe up from the middle of the edge swaps between Eraser tool and pen
 	4. Diagonal swipe down from the middle of the edge swaps between Selection tool and pen
 
-> **_NOTE:_**  The gestures on the edge are mirrored when left-handed.
+> **_NOTE:_**  The gestures on the edge are mirrored when left-handed, and changes according to toolbar position 
 
 ![image](images/Gestures.png)
 
 ### 4. recentsTagged.qmd
+#### ONLY AVAILABLE ON 3.22 AND BEFORE
 - Adds a new menu to the document drawer that shows only tagged files, sorted by last modified
 
 ![image](images/RecentsTag.png)
@@ -76,7 +77,11 @@ open the favourites and tagged view with a click.
 ![image](images/access.png)
 
 #### Moving the toolbars
-##### Press and hold the left-most icon, then drag the icon to move it around. The toolbar will turn completely blank to improve refresh speeds while moving it around
+##### Press and hold the left-most icon, then drag the icon to move it around. The toolbar will turn partially blank to improve refresh speeds while moving it around
+
+#### To add a tool
+Press and hold the tool on the main toolbar to add/remove from the floating toolbar. 
+> **_NOTE:_**  Undo/Redo can only be added when it's available, and needs to be pressed and held on the floating toolbar to be removed
 
 
 #### To change tool order
@@ -93,11 +98,9 @@ Press and hold the left-most icon
 
 ![image](images/layer.png)
 
+![image](images/layerMenu.png)
+
 *Layer menu*
-
-![image](images/toolbar_hor_add.png)
-
-![image](images/toolbar_hor_rem.png)
 
 *Toolbar Default*
 
@@ -109,9 +112,8 @@ Press and hold the left-most icon
 
 *Toolbar while in fullscreen*
 
-![image](images/toolbar_ver_add.png)
-
-![image](images/toolbar_ver_rem.png)
+![image](images/addRemoveTool.gif)
+![image](images/addRemoveUndoRedo.gif)
 
 
 *Toolbar when near the side edges*
