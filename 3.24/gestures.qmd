@@ -27,7 +27,7 @@ AFFECT [[17298303916558156758]]
 			property ~&197102514&~ highlighterSet: [];
 			property ~&197102514&~ shaderSet: [];
 			function saveColorFile() {
-				~&197091758&~ xhr =                      new                     XMLHttpRequest();
+				~&197091758&~ xhr =                        new                       XMLHttpRequest();
 				~&197091758&~ ~&6503736259&~ = {
 					~&7082545985179&~: colorSet ,
 					high: highlighterSet,
@@ -43,7 +43,7 @@ AFFECT [[17298303916558156758]]
 				xhr.~&6504279475&~(dataStr);
 			}
 			function loadColorFile() {
-				~&197091758&~ xhr =                                                        new                                                        XMLHttpRequest();
+				~&197091758&~ xhr =                                                          new                                                          XMLHttpRequest();
 			
 				xhr.~&6504147419&~("GET", "file:///home/root/colorSet.json"); 
 				xhr.onreadystatechange = function() {

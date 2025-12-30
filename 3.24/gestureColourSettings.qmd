@@ -12,7 +12,7 @@ INSERT {
 	LOCATE AFTER ALL
 	INSERT {
 	function saveColorFile() {
-				~&197091758&~ xhr =                        new                       XMLHttpRequest();
+				~&197091758&~ xhr =                          new                         XMLHttpRequest();
 				~&197091758&~ ~&6503736259&~ = {
 					~&7082545985179&~: ~&6504254477&~.colorSet,
 					high:~&6504254477&~.highlighterSet,
@@ -28,7 +28,7 @@ INSERT {
 				xhr.~&6504279475&~(dataStr);
 	}
 	function loadColorFile() {
-				~&197091758&~ xhr =                                                          new                                                          XMLHttpRequest();
+				~&197091758&~ xhr =                                                            new                                                            XMLHttpRequest();
 			
 				xhr.~&6504147419&~("GET", "file:///home/root/colorSet.json"); 
 				xhr.onreadystatechange = function() {
