@@ -10,10 +10,9 @@ This Repo consists of multiple Xovi(.qmd) extensions that are QoL improvements t
 
 Download the extensions from the corresponding folders to avoid issues. 
 
-Instructions to install xovi can be found in [here](https://github.com/asivery/rmpp-xovi-extensions/blob/master/INSTALL.MD). 
 
 The QMD files in this repo add a quicktools-like floating bar, layer management bar, and multiple gestures 
-Instructions to install xovi can be found in [here](https://github.com/asivery/rmpp-xovi-extensions/blob/master/INSTALL.MD). 
+Instructions to install xovi can be found in [here](https://github.com/asivery/rm-xovi-extensions/tree/master?tab=readme-ov-file#to-install-xovi)
 
 After which, copy the files to `/home/root/xovi/exthome/qt-resource-rebuilder/` and restart xovi. 
 
