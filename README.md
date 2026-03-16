@@ -8,6 +8,10 @@
 
 This Repo consists of multiple Xovi(.qmd) extensions that are QoL improvements to the xochitl interface. This **needs** qt-resource-rebuilder.so to work.
 
+## Vellum 
+This extension is available on https://vellum.delivery/#/package/floating-toolbar. This can be installed using https://github.com/rmitchellscott/reManager
+
+## Manual install
 Download the extensions from the corresponding folders to avoid issues. 
 
 
@@ -62,6 +66,7 @@ open the favourites and tagged view with a click.
 
 ### 6. floating.qmd
 - Allows adding any tool with a preset colour and thickness
+- Allows adding just a tool, or thickness, or colour option(3.25)
 - Allows changing the added tool order
 - Can be placed anywhere in the screen
 - Can be minimised when not in use
@@ -70,6 +75,14 @@ open the favourites and tagged view with a click.
 - 3 Presets of tools to change to
 - Floating Layers menu fully replaces system equivalent except for renaming the layer
 - Changes to a vertical bar when moved to the left/right edge of the screen
+
+
+https://github.com/user-attachments/assets/11d06798-b3d4-431b-bd93-c7b086f8f4d7
+
+
+
+https://github.com/user-attachments/assets/12eaf70f-c224-40ab-af33-20786b46cd01
+
 
 
 ### 7. toolbar_icon.qmd
@@ -87,6 +100,8 @@ open the favourites and tagged view with a click.
 
 #### To add a tool
 Press and hold the tool on the main toolbar to add/remove from the floating toolbar. 
+
+On 3.25, you can add intividual tools, thicknesses, or colours directly from the submenu 
 > **_NOTE:_**  Undo/Redo can only be added when it's available, and needs to be pressed and held on the floating toolbar to be removed
 
 
