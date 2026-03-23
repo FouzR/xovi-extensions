@@ -72,6 +72,8 @@ AFFECT [[11313888899523275277]]
 			signal floatAddRedo;
 			signal floatAddUndo;
 			signal floatToolSel;
+			
+			signal layersToggled;
 		}
 	END TRAVERSE
 END AFFECT
@@ -88,6 +90,8 @@ AFFECT [[15527434935107964598]]
 	property ~&197102514&~ toolSelFromPrimary
 	property ~&197102514&~ colSelFromPrimary
 	property ~&197102514&~ thickSelFromPrimary
+	
+	property ~&197102514&~ layersToggled;
 
 	~&428051690305612204&~{
 		~&7083194890448&~: ~&6504254477&~
@@ -277,25 +281,33 @@ END AFFECT
 
 AFFECT [[530036626909737151]]
 	TRAVERSE [[454089850271038938]] 
-	LOCATE BEFORE ALL 
-	INSERT{
-		property ~&197102514&~ layerFloatToggle
-	}
-	TRAVERSE [[14125623155555875541]] > [[14125623155555875541]] 
-	LOCATE AFTER ALL
-	INSERT {
-		~&425121728314878811&~.~&432643201877711221&~ {
-			~&7713532151049593&~: 180
-			~&214632764553&~: " Layers Floating Toolbar"
-			~&8399601734642709923&~: ~&"1888152859329366976&~
-			~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
-			~&8400129127120172259&~: ~&6504329801&~
-			~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
-			~&254542236275632405&~: {~&6504254477&~.layerFloatToggle();}	
+		LOCATE BEFORE ALL 
+		INSERT{
+			property ~&197102514&~ layerFloatToggle
+			signal layersToggled
 		}
-	}
+		TRAVERSE [[14125623155555875541]] > [[14125623155555875541]] 
+		LOCATE AFTER ALL
+		INSERT {
+			~&425121728314878811&~.~&432643201877711221&~ {
+				~&7713532151049593&~: 180
+				~&214632764553&~: " Layers Floating Toolbar"
+				~&8399601734642709923&~: ~&"1888152859329366976&~
+				~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
+				~&8400129127120172259&~: ~&6504329801&~
+				~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
+				~&254542236275632405&~: {
+				
+				~&6504254477&~.layersToggled() }	
+			}
+		}
+		END TRAVERSE
 	END TRAVERSE
-	
+	TRAVERSE [[454089850271038938]]
+		LOCATE AFTER ALL
+		INSERT {
+		onLayersToggled: {~&6504254477&~.~&233745975898428&~.layersToggled()};
+		}
 	END TRAVERSE
 END AFFECT
 
@@ -369,6 +381,8 @@ AFFECT [[1224665461898798997]]
 			LOCATE AFTER ALL
 			INSERT {
 
+				onLayersToggled: () => {~&233724020023100&~.~&197092075&~("In docview triggered"); ~&233745975898428&~.floatbarEnabledLayers = !~&233745975898428&~.floatbarEnabledLayers}
+				
 				onResetFloatBarPosition: () => {
 					~&7082882057113&~.moveToPosition((~&7083038346995&~.~&214646099849&~-~&7082882057113&~.~&214646099849&~)/2,floatQuick.~&7082729686082&~);
 				floatQuick.moveToPosition(~&233704648888572&~.~&180993&~+~&233704648888572&~.~&214646099849&~, 0);
@@ -869,7 +883,7 @@ AFFECT [[1224665461898798997]]
 					~&7083121450889&~ ~&6504329801&~;
 				}
 				function saveQuickToolFile() {
-					~&197091758&~ xhr =                              new                             XMLHttpRequest();
+					~&197091758&~ xhr =                                new                               XMLHttpRequest();
 					~&197091758&~ ~&6503736259&~ = {
 						quickTool: quickTool,
 						isfloatQuickActive: ~&233745975898428&~.floatbarQuickk,
@@ -893,7 +907,7 @@ AFFECT [[1224665461898798997]]
 					xhr.~&6504279475&~(dataStr);
 				}
 				function loadQuickToolFile() {
-					~&197091758&~ xhr =                                                                new                                                                XMLHttpRequest();
+					~&197091758&~ xhr =                                                                  new                                                                  XMLHttpRequest();
 					~&5972376&~ (presetState===1){
 					xhr.~&6504147419&~("GET", "file:///home/root/quickTool.json");}
 					~&6503784146&~ ~&5972376&~ (presetState===2){
