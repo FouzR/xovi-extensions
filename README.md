@@ -21,7 +21,7 @@ These QMDs can be installed with [vellum](https://github.com/vellum-dev/vellum-c
 
 ### Manual
 
-1. [Install xovi](https://github.com/asivery/rm-xovi-extensions#to-install-xovi)
+1. [Install xovi](https://github.com/asivery/rm-xovi-extensions#to-install-xovi) and the [qt-resource-rebuilder](https://github.com/asivery/rm-xovi-extensions/tree/master/qt-resource-rebuilder) extension
 2. Download QMDs you want to install from the folder corresponding to your software version
 3. Copy the downloaded files to `/home/root/xovi/exthome/qt-resource-rebuilder/` on the tablet
 4. Restart xovi
@@ -106,6 +106,8 @@ Adds the ability to select everything above the line
 Adds an icon with current tool, thickness, and colour in place of the toolbar-expand button while the toolbar is hidden
 
 ## Deprecated
+
+These QMDs will not be ported to future versions.
 
 ### selectionErase.qmd
 
