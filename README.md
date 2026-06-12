@@ -1,154 +1,188 @@
-# A repository of xovi extensions
+# A repository of my QMDs
 
 [![Ko-Fi](https://srv-cdn.himpfen.io/badges/kofi/kofi-flat.svg)](https://ko-fi.com/fouzr)
-[![rm1](https://img.shields.io/badge/rM1-supported-green)](https://remarkable.com/store/remarkable)
-[![rm2](https://img.shields.io/badge/rM2-supported-green)](https://remarkable.com/store/remarkable-2)
+[![rm1](https://img.shields.io/badge/rM1-supported-green)](https://remarkable.com/products/remarkable-1)
+[![rm2](https://img.shields.io/badge/rM2-supported-green)](https://remarkable.com/products/remarkable-2)
 [![rmpp](https://img.shields.io/badge/rMPP-supported-green)](https://remarkable.com/products/remarkable-paper/pro)
-[![rmppm](https://img.shields.io/badge/rMPPM-supported-green)](https://remarkable.com/products/remarkable-paper/pro-move)
-[![vellum](https://img.shields.io/badge/vellum-floating--toolbar-purple)](https://vellum.delivery/#/package/floating-toolbar/)
+[![rmppmove](https://img.shields.io/badge/rMPPMove-supported-green)](https://remarkable.com/products/remarkable-paper/pro-move)
+[![rmppure](https://img.shields.io/badge/rMPPure-supported-green)](https://remarkable.com/products/remarkable-paper/pure)
 
+This repository contains multiple QMD xovi extensions that are QoL improvements for the xochitl interface.
+QMDs in this repo add a quicktools-like floating bar, a layer management bar, and multiple gestures.
+Any bugs should be reported in the [issues tab](https://github.com/FouzR/xovi-extensions/issues).
 
-This Repo consists of multiple Xovi(.qmd) extensions that are QoL improvements to the xochitl interface. This **needs** qt-resource-rebuilder.so to work.
+As this project is done entirely in my free time, I'd appreciate support via Ko-Fi :)
 
-## Vellum 
-This extension is available on https://vellum.delivery/#/package/floating-toolbar. This can be installed using https://github.com/rmitchellscott/reManager
+## Install
 
-## Manual install
-Download the extensions from the corresponding folders to avoid issues. 
+### Vellum
 
+These QMDs can be installed with [vellum](https://github.com/vellum-dev/vellum-cli) and [reManager](https://github.com/rmitchellscott/reManager): <https://vellum.delivery/#/author/FouzR>.
 
-The QMD files in this repo add a quicktools-like floating bar, layer management bar, and multiple gestures 
-Instructions to install xovi can be found in [here](https://github.com/asivery/rm-xovi-extensions/tree/master?tab=readme-ov-file#to-install-xovi)
+### Manual
 
-After which, copy the files to `/home/root/xovi/exthome/qt-resource-rebuilder/` and restart xovi. 
+1. [Install xovi](https://github.com/asivery/rm-xovi-extensions#to-install-xovi)
+2. Download QMDs you want to install from the folder corresponding to your software version
+3. Copy the downloaded files to `/home/root/xovi/exthome/qt-resource-rebuilder/` on the tablet
+4. Restart xovi
 
-These QMDs were tested to work in 3.15-3.25. Any bugs should be reported in the repo issues. 
+## QMDs
 
-As this project is done entirely in my free time, I'd appreciate support via ko-fi :) 
+### floating.qmd
 
-## Extensions
+[![vellum](https://img.shields.io/badge/vellum-floating--toolbar-purple)](https://vellum.delivery/#/package/floating-toolbar)
 
-### 1. selectionErase.qmd
-- Adds the ability to delete a stroke once selected by the selection tool.
-  
-![image](images/DelStroke.png)
+<https://github.com/user-attachments/assets/11d06798-b3d4-431b-bd93-c7b086f8f4d7>
 
-### 2. favTagButton.qmd
-- Adds 2 extra buttons to the search/new note floating button on the file explorer that lets you
-open the favourites and tagged view with a click.
+<https://github.com/user-attachments/assets/12eaf70f-c224-40ab-af33-20786b46cd01>
 
-![image](images/favTagButton.png)
+Adds a floating toolbar with the following features:
 
-### 3. gestures.qmd
-- Adds a couple of gestures that are nice-to-have(Note: These have only been tested on right-handed mode. So left-handed mode would behave slightly differently)
-1. Swipe on left edge of the page to open/close the toolbar(Swipe towards the edge to close it, swipe from the edge to open it)
-2. Swipe with two-fingers from the left half of the bottom-edge to swap between eraser and pen
-3. Swipe with two-fingers from the right half of the bottom-edge to swap between selection tool and pen
-4. 4-Finger tap to open the document drawer
-5. The edge while in fullscreen has multiple gestures. 
-	1. Long swipe up/down changes thickness
-	2. Short swipe up/down changes colour depending on the config
-	3. Diagonal swipe up from the middle of the edge swaps between Eraser tool and pen
-	4. Diagonal swipe down from the middle of the edge swaps between Selection tool and pen
-
-> **_NOTE:_**  The gestures on the edge are mirrored when left-handed, and changes according to toolbar position 
-
-![image](images/Gestures.png)
-
-### 4. recentsTagged.qmd
-#### ONLY AVAILABLE ON 3.22 AND BEFORE
-- Adds a new menu to the document drawer that shows only tagged files, sorted by last modified
-
-![image](images/RecentsTag.png)
-
-### 5. selectionStuff.qmd
-- Adds the ability to select everything above the line
-
-![image](images/selBoth.png)
-
-### 6. floating.qmd
 - Allows adding any tool with a preset colour and thickness
-- Allows adding just a tool, or thickness, or colour option(3.25)
+- Allows adding just a tool, or thickness, or colour option (3.25 and above)
 - Allows changing the added tool order
 - Can be placed anywhere in the screen
 - Can be minimised when not in use
 - Snaps to the edges and horizontal/vertical center of the screen when moved
-- Config persists between restarts(Enabled state, position, tools list)
-- 3 Presets of tools to change to
-- Floating Layers menu fully replaces system equivalent except for renaming the layer
+- Config persists between restarts (enabled state, position, tools list)
+- Three presets to change between
+- Floating layers menu fully replaces the system equivalent, except for renaming the layer
 - Changes to a vertical bar when moved to the left/right edge of the screen
 
+See the [floating toolbar](#floating-toolbar) section of this readme for more.
 
-https://github.com/user-attachments/assets/11d06798-b3d4-431b-bd93-c7b086f8f4d7
+### gestures.qmd
 
+[![vellum](https://img.shields.io/badge/vellum-gestures--fouzr-purple)](https://vellum.delivery/#/package/gestures-fouzr)
 
+![image](images/gestures.png)
 
-https://github.com/user-attachments/assets/12eaf70f-c224-40ab-af33-20786b46cd01
+> [!NOTE]
+> These have only been tested in right-handed mode.
+> Festures on the edge are mirrored when left-handed, and change according to toolbar position.
 
+Adds multiple gestures that are nice-to-have:
 
+- Swipe on left edge of the page to open/close the toolbar (towards the edge to close, from the edge to open)
+- Swipe with two-fingers from the left half of the bottom edge to swaps between pen and eraser
+- Swipe with two-fingers from the right half of the bottom edge to swaps between pen and selection tool
+- Four-finger tap to open the document drawer
+- The toolbar edge while in fullscreen has multiple gestures:
+    - Long swipe up/down to change thickness
+    - Short swipe up/down to change colour depending on configuration in accessibility settings
+    - Diagonal swipe up from the middle of the edge swaps between pen and eraser
+    - Diagonal swipe down from the middle of the edge swaps between pen and selection tool
 
-### 7. toolbar_icon.qmd
-- Adds an icon with current tool, thickness, and colour in place of the toolbar-expand button while the toolbar is hidden
+### gestureColourSettings.qmd
 
-![image](images/toolbar_icon.png)
+[![vellum](https://img.shields.io/badge/vellum-gesture--colour--settings-purple)](https://vellum.delivery/#/package/gesture-colour-settings)
 
-### 8. gestureColourSettings.qmd
-- A menu in accessibility menu to choose which colours to swap between with Pens, highlighters, or shaders
+![image](images/accessibility.png)
 
-![image](images/access.png)
+Adds a menu in accessibility to choose which colours to swap between with pens, highlighters, and shaders when using [gestures.qmd](#gesturesqmd).
 
-#### Moving the toolbars
-##### Press and hold the left-most icon, then drag the icon to move it around. The toolbar will turn partially blank to improve refresh speeds while moving it around
+### favTagButton.qmd
 
-#### To add a tool
-Press and hold the tool on the main toolbar to add/remove from the floating toolbar. 
+[![vellum](https://img.shields.io/badge/vellum-fav--tag--button-purple)](https://vellum.delivery/#/package/fav-tag-button)
 
-On 3.25, you can add intividual tools, thicknesses, or colours directly from the submenu 
-> **_NOTE:_**  Undo/Redo can only be added when it's available, and needs to be pressed and held on the floating toolbar to be removed
+![image](images/fav-tag-button.png)
 
+Adds buttons to the navigator search/new note button that lets you open the favourites and tagged view with a click.
 
-#### To change tool order
-To change the tool order, press and hold on any tool button(s) to show the arrows, and change the order using them.
-Note: The arrows won't show up unless you have the base toolbar open.
+### selectionStuff.qmd
 
-#### To Minimize
-Press and hold the left-most icon
+[![vellum](https://img.shields.io/badge/vellum-selection--stuff-purple)](https://vellum.delivery/#/package/selection-stuff)
 
+![image](images/selection-stuff.png)
 
-![image](images/menu.png)
+Adds the ability to select everything above the line
 
-*Menu*
+### toolbar_icon.qmd
 
-![image](images/layer.png)
+[![vellum](https://img.shields.io/badge/vellum-toolbar--icon-purple)](https://vellum.delivery/#/package/toolbar-icon)
 
-![image](images/layerMenu.png)
+![image](images/toolbar-icon.png)
 
-*Layer menu*
+Adds an icon with current tool, thickness, and colour in place of the toolbar-expand button while the toolbar is hidden
 
-*Toolbar Default*
+## Deprecated
 
-![image](images/toolbar_hor_move.png)
+### selectionErase.qmd
 
-*Toolbar tool order change*
+[![vellum](https://img.shields.io/badge/vellum-selection--erase-purple)](https://vellum.delivery/#/package/selection-erase)
 
-![image](images/toolbar_hor_fs.png)
+![image](images/selection-erase.png)
 
-*Toolbar while in fullscreen*
+> [!NOTE]
+> This feature is in the default interface since 3.27.
 
-![image](images/addRemoveTool.gif)
-![image](images/addRemoveUndoRedo.gif)
+Adds the ability to delete a stroke once selected by the selection tool.
 
+### recentsTagged.qmd
 
-*Toolbar when near the side edges*
+[![vellum](https://img.shields.io/badge/vellum-recents--tagged-purple)](https://vellum.delivery/#/package/recents-tagged)
 
-![image](images/toolbar_ver_move.png)
+![image](images/recents-tagged.png)
 
-*Change Order Buttons*
+> [!NOTE]
+> Only available for 3.22 and below.
 
-![image](images/toolbar_ver_fs.png)
+Adds a new menu to the document drawer that shows only tagged files, sorted by last modified.
 
-*fullscreen*
+## Floating toolbar
 
-![image](images/min.png)
+### Moving the toolbar
 
-*Minimized*
+Press and hold the left-most icon, then drag the icon to move it around. The toolbar will turn partially blank to improve refresh speeds while moving around.
+
+### Adding a tool
+
+![image](images/floating-add-remove-tool.gif)
+
+![image](images/floating-add-remove-undo-redo.gif)
+
+Press and hold the tool on the main toolbar to add or remove it from the floating toolbar.
+
+> [!NOTE]
+> Undo and redo can only be added when available, and need to be pressed and held on the floating toolbar to remove.
+
+On 3.25 and above, you can add intividual tools, thicknesses, and colours directly from the submenu.
+
+### Changing tool order
+
+To change the tool order, press and hold on any tool button(s) to display arrows, and change the order using them.
+
+> [!NOTE]
+> The arrows won't show up unless you have the main toolbar open.
+
+### Minimizing
+
+Press and hold the left-most icon.
+
+### Images
+
+#### Menu
+
+![image](images/floating-menu.png)
+
+#### Layers menu
+
+![image](images/floating-layers.png)
+
+![image](images/floating-layers-menu.png)
+
+#### Change tool order
+
+![image](images/floating-change-order-horizontal.png)
+
+![image](images/floating-change-order-vertical.png)
+
+#### In fullscreen
+
+![image](images/floating-fullscreen-horizontal.png)
+
+![image](images/floating-fullscreen-vertical.png)
+
+#### Minimized
+
+![image](images/floating-minimized.png)
