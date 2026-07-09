@@ -464,7 +464,7 @@ AFFECT [[1224665461898798997]]
 				~&5972374&~: ~&7082882057113&~
 				property ~&6503679477&~ currentFile: ~&254547437090201330&~.~&7713361680718652&~ || ~&254547437090201330&~.~&7712934851008712&~
 				onCurrentFileChanged: floatQuick.loadQuickToolFile();
-				~&233748328658231&~: currentFile && ~&233745975898428&~.floatbarEnabledLayers
+				~&233748328658231&~: currentFile && ~&233745975898428&~.floatbarEnabledLayers  && !~&12464413590283098527&~.~&15262893365866598134&~
 				~&214641137009&~: 1 
 				~&504576868586410052&~: ~&214625660372&~
 				~&6502604167&~.~&7082453764421&~: floatLayerHandle.~&6503754151&~.~&7082453764421&~
@@ -812,7 +812,7 @@ AFFECT [[1224665461898798997]]
 			~&425121728314878811&~.~&16765000136167945189&~ {
 				~&5972374&~: floatQuick
 				property ~&6503679477&~ currentFile: ~&254547437090201330&~.~&7713361680718652&~ || ~&254547437090201330&~.~&7712934851008712&~
-				~&233748328658231&~: currentFile && ~&233745975898428&~.floatbarQuickk
+				~&233748328658231&~: currentFile && ~&233745975898428&~.floatbarQuickk  && !~&12464413590283098527&~.~&15262893365866598134&~
 				onCurrentFileChanged: loadQuickToolFile();
 				~&214641137009&~: 1 
 				~&504576868586410052&~: ~&214625660372&~
@@ -883,7 +883,7 @@ AFFECT [[1224665461898798997]]
 					~&7083121450889&~ ~&6504329801&~;
 				}
 				function saveQuickToolFile() {
-					~&197091758&~ xhr =                                   new                                  XMLHttpRequest();
+					~&197091758&~ xhr =                                     new                                    XMLHttpRequest();
 					~&197091758&~ ~&6503736259&~ = {
 						quickTool: quickTool,
 						isfloatQuickActive: ~&233745975898428&~.floatbarQuickk,
@@ -907,7 +907,7 @@ AFFECT [[1224665461898798997]]
 					xhr.~&6504279475&~(dataStr);
 				}
 				function loadQuickToolFile() {
-					~&197091758&~ xhr =                                                                     new                                                                     XMLHttpRequest();
+					~&197091758&~ xhr =                                                                       new                                                                       XMLHttpRequest();
 					~&5972376&~ (presetState===1){
 					xhr.~&6504147419&~("GET", "file:///home/root/quickTool.json");}
 					~&6503784146&~ ~&5972376&~ (presetState===2){
