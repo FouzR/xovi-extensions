@@ -1,15 +1,15 @@
 SLOT gestureSlots INSERT TEMPLATE swipes{
-	~&5972374&~: swipeForSelSwap
-	~&254526613107157226&~:~&5971598&~.~&214638019283&~(0, -1) 
-	~&7712927726759444&~:0.5 
-	~&13245387760250501547&~: ~&214625660372&~
+	id: swipeForSelSwap
+	direction:Qt.point(0, -1) 
+	distance:0.5 
+	releaseRequired: false
 	conditionName :selectionOr
-	condition: (~&7842069035455457876&~.~&8399230650759060099&~ === ~&"254547531013851119&~)
-	~&214620333493&~: ~&5971598&~.~&6504243191&~(~&254549375155946341&~.~&214646099849&~/2, 0.9*~&254549375155946341&~.~&7082729686082&~, ~&254549375155946341&~.~&214646099849&~/2, 0.1*~&254549375155946341&~.~&7082729686082&~)
-	~&233727659172727&~:2
-	~&7082453764199&~:{
-			~&5972376&~ (!selectionOr){~&233745975898428&~.~&3352491319205423503&~();}
-			~&6503784146&~ {~&233745975898428&~.~&254547531013823564&~(~&"233740920352621&~);}}
+	condition: (documentViewTools.activeTool === "selection")
+	areas: Qt.rect(touchArea.width/2, 0.9*touchArea.height, touchArea.width/2, 0.1*touchArea.height)
+	fingers:2
+	action:{
+			if (!selectionOr){toolbar.selectSelection();}
+			else {toolbar.selectPen("primary");}}
 		
 }
 END SLOT

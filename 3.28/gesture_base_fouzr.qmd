@@ -1,19 +1,19 @@
 TEMPLATE swipes{
-	~&8545339034058226003&~{
-		~&5972374&~: ~{id}~
-		property ~&6503679477&~ ~{conditionName}~ : ~{condition}~
-		~&7712927726759444&~: ~{distance}~* ~&254549375155946341&~.~&496707965879903317&~
-		~&254526613107157226&~: ~{direction}~
-        ~&233726547792244&~: !~&254549375155946341&~.~&16735792760298061570&~
-	~&13245387760250501547&~: ~{releaseRequired}~
-		~&6503646466&~: ~{areas}~
-		~&233727659172727&~: ~{fingers}~
-		~&495358363329399331&~:~{action}~
+	TouchAreaSwipeFilter{
+		id: ~{id}~
+		property bool ~{conditionName}~ : ~{condition}~
+		distance: ~{distance}~* touchArea.pixelsPerCm
+		direction: ~{direction}~
+        enabled: !touchArea.panAndZoomOnly
+	releaseRequired: ~{releaseRequired}~
+		area: ~{areas}~
+		fingers: ~{fingers}~
+		onTriggered:~{action}~
 	}
 
 } 
-AFFECT [[17298303916558156758]]
-	TRAVERSE [[254504370080162629]]
+AFFECT /qml/device/view/documentview/SceneViewGestures.qml
+	TRAVERSE TouchArea
 		LOCATE AFTER ALL
 		INSERT SLOT gestureSlots
 	END TRAVERSE

@@ -1,20 +1,20 @@
-AFFECT [[11313888899523275277]]
-    TRAVERSE [[8397993708429497603]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml
+    TRAVERSE FocusScope
         LOCATE BEFORE ALL INSERT {
             function swapEraser() {
-				~&197091758&~ ~&214624950331&~ = ~&6504117156&~;
-				~&197085552&~ (~&197091758&~ ~&180978&~ = 0; ~&180978&~ < ~&15827066597889961342&~.~&214622615378&~; ~&180978&~++) {
-					~&197091758&~ entryI = ~&15827066597889961342&~.~&7082786471789&~(~&180978&~).~&6503936152&~;
-					~&5972376&~ (entryI.~&8399878573055752961&~ === ~&"8399436595340057472&~) {
-						~&214624950331&~ = entryI;
-						~&214621519406&~;
+				let entry = null;
+				for (let i = 0; i < editingTools.count; i++) {
+					let entryI = editingTools.itemAt(i).item;
+					if (entryI.objectName === "eraserMenu") {
+						entry = entryI;
+						break;
 					}
 				}               
-				~&5972376&~ (~&6504254477&~.~&16536305558369217168&~ !== ~&214624950331&~){
-					~&6504254477&~.~&5107434981825242642&~(~&214624950331&~.~&197096108&~.~&6504326343&~);
-					~&1318897126668497941&~(~&214624950331&~, 0);
+				if (root.selectedTool !== entry){
+					root.eraserToolSelected(entry.pen.tool);
+					requestPenSelect(entry, 0);
 				}
-				~&6503784146&~{~&6504254477&~.~&254547531013823564&~(~&"233740920352621&~);}
+				else{root.selectPen("primary");}
             }
         }
     END TRAVERSE

@@ -1,72 +1,72 @@
 
 
-AFFECT [[10008392000802964043]]
-	TRAVERSE [[7081645463424]]#[[6504254477]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/ToolbarTool.qml
+	TRAVERSE Loader#root
 		LOCATE BEFORE ALL
-		INSERT {signal ~&16404285191348324656&~}
-		TRAVERSE [[254480451320573660]]#[[12920733285382795992]] > [[425121728314878811.8398643967132532355]]
+		INSERT {signal pressAndHold}
+		TRAVERSE Component#toolbarButton > ArkControls.ToolButton
 			LOCATE AFTER ALL
-			INSERT {~&383135108587212173&~: ~&6504254477&~.~&16404285191348324656&~()}
+			INSERT {onPressAndHold: root.pressAndHold()}
 		END TRAVERSE
 	END TRAVERSE
 END AFFECT
 
-AFFECT [[4354033616793223840]]
-	TRAVERSE [[454089850271038938]]#[[6504254477]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/RedoButton.qml
+	TRAVERSE ToolbarTool#root
 		LOCATE AFTER ALL
 		INSERT {
-			~&383135108587212173&~: {~&6504254477&~.~&233745975898428&~.floatAddRedo();}
+			onPressAndHold: {root.toolbar.floatAddRedo();}
 		}
 	END TRAVERSE
 END AFFECT
 
 
-AFFECT [[18660494620083468]]
-	TRAVERSE [[454089850271038938]]#[[6504254477]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/UndoButton.qml
+	TRAVERSE ToolbarTool#root
 		LOCATE AFTER ALL
 		INSERT {
-			~&383135108587212173&~: {~&6504254477&~.~&233745975898428&~.floatAddUndo();}
+			onPressAndHold: {root.toolbar.floatAddUndo();}
 		}
 	END TRAVERSE
 END AFFECT
 
-AFFECT [[15527434935107964598]]
-	TRAVERSE [[458815733711863275]]#[[6504254477]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/PrimaryPenMenu.qml
+	TRAVERSE WritingTool#root
 		LOCATE AFTER ALL
 		INSERT {
-			~&383135108587212173&~: {~&6504254477&~.~&233745975898428&~.floatToolSel();}
+			onPressAndHold: {root.toolbar.floatToolSel();}
 		}
 	END TRAVERSE
 END AFFECT
-AFFECT [[328605775881434202]]
-	TRAVERSE [[458815733711863275]]#[[6504254477]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/SecondaryPenMenu.qml
+	TRAVERSE WritingTool#root
 		LOCATE AFTER ALL
 		INSERT {
-			~&383135108587212173&~: {~&6504254477&~.~&233745975898428&~.floatToolSel();}
-		}
-	END TRAVERSE
-END AFFECT
-
-AFFECT [[11344388694920402865]]
-	TRAVERSE [[233699089663818]]#[[6504254477]]
-		LOCATE AFTER ALL
-		INSERT {
-			~&383135108587212173&~: {~&6504254477&~.~&233745975898428&~.floatToolSel();}
+			onPressAndHold: {root.toolbar.floatToolSel();}
 		}
 	END TRAVERSE
 END AFFECT
 
-AFFECT [[14657908675683620124]]
-	TRAVERSE [[233699089663818]]#[[6504254477]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/EraserMenu.qml
+	TRAVERSE PenTool#root
 		LOCATE AFTER ALL
 		INSERT {
-			~&383135108587212173&~: {~&6504254477&~.~&233745975898428&~.floatToolSel();}
+			onPressAndHold: {root.toolbar.floatToolSel();}
 		}
 	END TRAVERSE
 END AFFECT
 
-AFFECT [[11313888899523275277]]
-	TRAVERSE [[8397993708429497603]]#[[6504254477]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/SelectionButton.qml
+	TRAVERSE PenTool#root
+		LOCATE AFTER ALL
+		INSERT {
+			onPressAndHold: {root.toolbar.floatToolSel();}
+		}
+	END TRAVERSE
+END AFFECT
+
+AFFECT /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml
+	TRAVERSE FocusScope#root
 		LOCATE BEFORE ALL
 		INSERT{
 			signal floatAddRedo;
@@ -80,43 +80,43 @@ END AFFECT
 
 
 
-AFFECT [[11313888899523275277]]
-    TRAVERSE [[8397993708429497603]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml
+    TRAVERSE FocusScope
         LOCATE BEFORE ALL INSERT {
-            function floatSelectSelectionMode(~&6504074414&~) {
-            ~&197091758&~ ~&214624950331&~ = ~&6504117156&~
-				~&197085552&~ (~&197091758&~ ~&180978&~ = 0; ~&180978&~ < ~&15827066597889961342&~.~&214622615378&~; ~&180978&~++) {
-					~&197091758&~ entryI = ~&15827066597889961342&~.~&7082786471789&~(~&180978&~).~&6503936152&~;
-					~&5972376&~ (entryI.~&8399878573055752961&~ == ~&"3352522687614010315&~) {
-						~&214624950331&~ = entryI;
+            function floatSelectSelectionMode(mode) {
+            let entry = null
+				for (let i = 0; i < editingTools.count; i++) {
+					let entryI = editingTools.itemAt(i).item;
+					if (entryI.objectName == "selectionButton") {
+						entry = entryI;
 						/* console.log(entry);*/
-						~&214621519406&~;
+						break;
 					}
 				}
-                ~&214624950331&~.~&15054637347489746331&~(~&6504074414&~);
+                entry.selectionToolModeSelected(mode);
             }
         }
     END TRAVERSE
 END AFFECT
 
 
-AFFECT [[15527434935107964598]]
-	TRAVERSE [[458815733711863275]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/PrimaryPenMenu.qml
+	TRAVERSE WritingTool
 	LOCATE AFTER ALL
 	INSERT {
-	property ~&197102514&~ resetFloatBarPositionFromPrimary
-	property ~&197102514&~ presetSaveFromPrimary
-	property ~&197088788&~ presetNumberFromPrimary: 1
-	property ~&197102514&~ toolSelFromPrimary
-	property ~&197102514&~ colSelFromPrimary
-	property ~&197102514&~ thickSelFromPrimary
+	property var resetFloatBarPositionFromPrimary
+	property var presetSaveFromPrimary
+	property int presetNumberFromPrimary: 1
+	property var toolSelFromPrimary
+	property var colSelFromPrimary
+	property var thickSelFromPrimary
 	
-	property ~&197102514&~ layersToggled;
+	property var layersToggled;
 
-	~&428051690305612204&~{
-		~&7083194890448&~: ~&6504254477&~
+	Connections{
+		target: root
 		function onPresetSave(){presetSaveFromPrimary();}
-		function onPresetNumberChanged() {presetNumberFromPrimary = ~&6504254477&~.presetNumber; }
+		function onPresetNumberChanged() {presetNumberFromPrimary = root.presetNumber; }
 		function onResetFloatBarPosition(){resetFloatBarPositionFromPrimary();}
 		
 		function onThickSel(){thickSelFromPrimary();}
@@ -126,35 +126,35 @@ AFFECT [[15527434935107964598]]
 	
 	END TRAVERSE
 END AFFECT
-AFFECT [[11313888899523275277]]
-	TRAVERSE [[8397993708429497603]] > [[6502786168]]#[[233745975898428]] > [[7081645463424]]
-		REPLACE [[8213680718767871380]] WITH {
-		~&8213680718767871380&~: {
-                ~&5972376&~ (~&254547969329691981&~ === "") {
-                    ~&7083121450889&~;
+AFFECT /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml
+	TRAVERSE FocusScope > Item#toolbar > Loader
+		REPLACE onSourceUrlChanged WITH {
+		onSourceUrlChanged: {
+                if (sourceUrl === "") {
+                    return;
                 }
-                ~&214622607920&~ ~&12283807014411235127&~ = {
-				~&233745975898428&~ : ~&6504254477&~, 
-				~&15640708674084664669&~ : ~&6504254477&~.~&15640708674084664669&~, 
-				~&6504337259&~ : ~&454089850271038938&~.~&6503187275&~.~&14888501028015932088&~, 
-				toolSelFromPrimary: () => {~&6504254477&~.toolSel(); },
-				thickSelFromPrimary: () => {~&6504254477&~.thickSel();},
-				colSelFromPrimary: () => {~&6504254477&~.colSel(); },
-				resetFloatBarPositionFromPrimary: () => {~&6504254477&~.resetFloatBarPosition()},
-				presetSaveFromPrimary: () => ~&6504254477&~.presetSave(),
-				quickToolsFromPrimary: () => {~&6504254477&~.floatbarQuickk=!~&6504254477&~.floatbarQuickk;},
-				switchPresetsPrimary: () => {~&6504254477&~.switchPresets()},
-				layerFloatToggle: () => {~&6504254477&~.floatbarEnabledLayers = !~&6504254477&~.floatbarEnabledLayers},
+                const requiredProperties = {
+				toolbar : root, 
+				antialiasing : root.antialiasing, 
+				type : ToolbarTool.Type.ToolbarButton, 
+				toolSelFromPrimary: () => {root.toolSel(); },
+				thickSelFromPrimary: () => {root.thickSel();},
+				colSelFromPrimary: () => {root.colSel(); },
+				resetFloatBarPositionFromPrimary: () => {root.resetFloatBarPosition()},
+				presetSaveFromPrimary: () => root.presetSave(),
+				quickToolsFromPrimary: () => {root.floatbarQuickk=!root.floatbarQuickk;},
+				switchPresetsPrimary: () => {root.switchPresets()},
+				layerFloatToggle: () => {root.floatbarEnabledLayers = !root.floatbarEnabledLayers},
 				};
-                ~&254547540655434182&~(~&254547969329691981&~, ~&12283807014411235127&~);
+                setSource(sourceUrl, requiredProperties);
             }		 
 		}
 	END TRAVERSE
 END AFFECT
 
 
-AFFECT [[6722609618937832156]]
-	TRAVERSE [[233699089663818]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/WritingTool.qml
+	TRAVERSE PenTool
 	LOCATE BEFORE ALL
 	INSERT {
 		signal resetFloatBarPosition
@@ -164,108 +164,108 @@ AFFECT [[6722609618937832156]]
 		signal thickSel
 		signal colSel
 
-		property ~&197102514&~ quickToolsFromPrimary
-		property ~&197102514&~ switchPresetsPrimary
+		property var quickToolsFromPrimary
+		property var switchPresetsPrimary
 	}
 	END TRAVERSE
-	TRAVERSE [[233699089663818]]#[[6504254477]] > [[6502786168]]![[12921149980962105220]] > [[14125623155555875541]]
+	TRAVERSE PenTool#root > Item!implicitWidth > ColumnLayout
 	LOCATE AFTER ALL
 	INSERT {
-			~&425121728314878811&~.~&15740235808997988493&~ {
-                ~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
+			ArkControls.FoldoutDivider {
+                Layout.fillWidth: true
            }
 		QuickToolsToggle {}
 	}
 	END TRAVERSE
-	TRAVERSE [[233699089663818]]#[[6504254477]] > [[6502786168]]![[12921149980962105220]] > [[254501558939456351]]
+	TRAVERSE PenTool#root > Item!implicitWidth > RowLayout
 	LOCATE AFTER ALL
 	INSERT {
-			~&425121728314878811&~.~&15740235808997988493&~ {
-                ~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
+			ArkControls.FoldoutDivider {
+                Layout.fillWidth: true
            }
 		QuickToolsToggle {}
 	}
 	END TRAVERSE
-	TRAVERSE [[233699089663818]]#[[6504254477]]
+	TRAVERSE PenTool#root
 	LOCATE AFTER ALL
 	INSERT {
-	component QuickToolsToggle: ~&425121728314878811&~.~&233686564541414&~ {
-        ~&5972374&~: quicktools
-        ~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
-        ~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
-		~&477062473974076915&~: ~&14125623155555875541&~ {
-						~&5972374&~: ~&233724020048228&~
-						~&233744706647566&~: 0
-						~&214646099849&~: 420
-						~&425121728314878811&~.~&432643201877711221&~ {
-							~&214632764553&~: "QuickTools"
-							~&8399601734642709923&~: ~&"6452766492113250787&~
-							~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
-							~&8400129127120172259&~: ~&6504329801&~
-							~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
-							~&254542236275632405&~: {quickToolsFromPrimary();}
+	component QuickToolsToggle: ArkControls.Foldout {
+        id: quicktools
+        antialiasing: root.antialiasing
+        Layout.fillWidth: true
+		contentItem: ColumnLayout {
+						id: content
+						spacing: 0
+						width: 420
+						ArkControls.FoldoutItem {
+							label: "QuickTools"
+							iconSource: "qrc:/ark/icons/three_dots_horisontal"
+							antialiasing: root.antialiasing
+							topDivider: true
+							Layout.fillWidth: true
+							onClicked: {quickToolsFromPrimary();}
 						}
-						~&425121728314878811&~.~&432643201877711221&~ {
-							~&5972374&~: quickPresets
-							~&214632764553&~: "Cycle Preset "
-							~&8399601734642709923&~: ~&"1888152859110688812&~
-							~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
-							~&8400129127120172259&~: ~&6504329801&~
-							~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
-							~&254542236275632405&~: {switchPresetsPrimary();}
+						ArkControls.FoldoutItem {
+							id: quickPresets
+							label: "Cycle Preset "
+							iconSource: "qrc:/ark/icons/folder"
+							antialiasing: root.antialiasing
+							topDivider: true
+							Layout.fillWidth: true
+							onClicked: {switchPresetsPrimary();}
 						}
-						~&425121728314878811&~.~&432643201877711221&~ {
-							~&5972374&~: quickPresetSave
-							property ~&7083178290016&~ ~&6503664356&~: "Save Preset"
-							property ~&7083178290016&~ baseIcon:~&"1888152859225879307&~
-							property ~&7083178290016&~ ~&6504275384&~: "Saved Preset"
-							property ~&7083178290016&~ saveIcon:~&"7424590230465671801&~
-							~&8399601734642709923&~: baseIcon
-							~&214632764553&~: ~&6503664356&~
-							~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
-							~&8400129127120172259&~: ~&6504329801&~
-							~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
-							~&254542253295368380&~: {~&6504254477&~.presetSave();
-							quickPresetSave.~&214632764553&~ =~&6504275384&~;
-							quickPresetSave.~&8399601734642709923&~=saveIcon;}
-							~&8399894427451672267&~: {
-							quickPresetSave.~&214632764553&~ =~&6503664356&~;
-							quickPresetSave.~&8399601734642709923&~=baseIcon;}
+						ArkControls.FoldoutItem {
+							id: quickPresetSave
+							property string base: "Save Preset"
+							property string baseIcon:"qrc:/ark/icons/import"
+							property string save: "Saved Preset"
+							property string saveIcon:"qrc:/ark/icons/checkmark"
+							iconSource: baseIcon
+							label: base
+							antialiasing: root.antialiasing
+							topDivider: true
+							Layout.fillWidth: true
+							onPressed: {root.presetSave();
+							quickPresetSave.label =save;
+							quickPresetSave.iconSource=saveIcon;}
+							onReleased: {
+							quickPresetSave.label =base;
+							quickPresetSave.iconSource=baseIcon;}
 						}
-						~&425121728314878811&~.~&432643201877711221&~ {
-							~&214632764553&~: "Reset FloatBar"
-							~&8399601734642709923&~: ~&"8609871180810563551&~
-							~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
-							~&8400129127120172259&~: ~&6504329801&~
-							~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
-							~&254542236275632405&~: {~&6504254477&~.resetFloatBarPosition()}
+						ArkControls.FoldoutItem {
+							label: "Reset FloatBar"
+							iconSource: "qrc:/ark/icons/arrow_up"
+							antialiasing: root.antialiasing
+							topDivider: true
+							Layout.fillWidth: true
+							onClicked: {root.resetFloatBarPosition()}
 						}
     }
 	}
 	}
 	END TRAVERSE
-		TRAVERSE [[233699089663818]]
-		TRAVERSE [[432643201877637292]]:[[233699089199698]] > [[7712155293725601]]#[[12920756540044148050]] > [[425121728314878811.432643201877711221]]
+		TRAVERSE PenTool
+		TRAVERSE FoldoutGrid:PenGrid > Repeater#toolsRepeater > ArkControls.FoldoutItem
 			LOCATE AFTER ALL
 			INSERT
 			{
-			~&383135108587212173&~: {~&6504254477&~.toolSel(); }
+			onPressAndHold: {root.toolSel(); }
 			}
 		END TRAVERSE
 
-		TRAVERSE [[432643201877637292]]:[[14525112301990522235]] > [[7712155293725601]] > [[425121728314878811.432643201877711221]]
+		TRAVERSE FoldoutGrid:ThicknessGrid > Repeater > ArkControls.FoldoutItem
 			LOCATE AFTER ALL
 			INSERT
 			{
-			~&383135108587212173&~:{~&6504254477&~.thickSel(); }
+			onPressAndHold:{root.thickSel(); }
 			}
 		END TRAVERSE
 
-		TRAVERSE [[432643201877637292]]:[[254480449992140494]] > [[7712155293725601]]  > [[425121728314878811.2918947772029071675]]
+		TRAVERSE FoldoutGrid:ColorGrid > Repeater  > ArkControls.FoldoutGridItem
 			LOCATE AFTER ALL
 			INSERT
 			{
-			~&383135108587212173&~: {~&6504254477&~.colSel(); }
+			onPressAndHold: {root.colSel(); }
 			}
 		END TRAVERSE
 	END TRAVERSE
@@ -274,12 +274,12 @@ END AFFECT
 
 
 
-AFFECT [[11313888899523275277]]
-	IMPORT [[233700934949963.233693781272506]] 1.0
-	IMPORT [[7082573613689.5972775.7712892662059645]] 1.0
-    IMPORT [[6504469795.6504031891.7712892662059645]] 1.0
-	TRAVERSE [[8397993708429497603]]
-		LOCATE BEFORE [[6650786433440202278]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml
+	IMPORT QtQuick.Layouts 1.0
+	IMPORT device.ui.controls 1.0
+    IMPORT xofm.libs.controls 1.0
+	TRAVERSE FocusScope
+		LOCATE BEFORE pageOverviewSelected
 		INSERT {
 			signal resetFloatBarPosition
 			signal presetSave
@@ -288,45 +288,45 @@ AFFECT [[11313888899523275277]]
 			signal colSel
 			signal thickSel
 
-			property ~&6503679477&~ floatbarEnabledLayers:~&214625660372&~
-			property ~&6503679477&~ floatbarQuick:~&6504329801&~
-			property ~&6503679477&~ floatbarQuickk:~&214625660372&~
-			property ~&6503679477&~ onboarded: ~&6504329801&~
-			property ~&197088788&~ presetNumber: 1
+			property bool floatbarEnabledLayers:false
+			property bool floatbarQuick:true
+			property bool floatbarQuickk:false
+			property bool onboarded: true
+			property int presetNumber: 1
 	
     }
 		END TRAVERSE
 
 END AFFECT
 
-AFFECT [[530036626909737151]]
-	TRAVERSE [[454089850271038938]] 
+AFFECT /qt/qml/xofm/libs/toolbar/qml/LayersMenu.qml
+	TRAVERSE ToolbarTool 
 		LOCATE BEFORE ALL 
 		INSERT{
-			property ~&197102514&~ layerFloatToggle
+			property var layerFloatToggle
 			signal layersToggled
 		}
-		TRAVERSE [[14125623155555875541]] > [[14125623155555875541]] 
+		TRAVERSE ColumnLayout > ColumnLayout 
 		LOCATE AFTER ALL
 		INSERT {
-			~&425121728314878811&~.~&432643201877711221&~ {
-				~&7713532151049593&~: 180
-				~&214632764553&~: " Layers Floating Toolbar"
-				~&8399601734642709923&~: ~&"1888152859329366976&~
-				~&15640708674084664669&~: ~&6504254477&~.~&15640708674084664669&~
-				~&8400129127120172259&~: ~&6504329801&~
-				~&7081629735527&~.~&254529418434902000&~: ~&6504329801&~
-				~&254542236275632405&~: {
+			ArkControls.FoldoutItem {
+				rotation: 180
+				label: " Layers Floating Toolbar"
+				iconSource: "qrc:/ark/icons/layers"
+				antialiasing: root.antialiasing
+				topDivider: true
+				Layout.fillWidth: true
+				onClicked: {
 				
-				~&6504254477&~.layersToggled() }	
+				root.layersToggled() }	
 			}
 		}
 		END TRAVERSE
 	END TRAVERSE
-	TRAVERSE [[454089850271038938]]
+	TRAVERSE ToolbarTool
 		LOCATE AFTER ALL
 		INSERT {
-		onLayersToggled: {~&6504254477&~.~&233745975898428&~.layersToggled()};
+		onLayersToggled: {root.toolbar.layersToggled()};
 		}
 	END TRAVERSE
 END AFFECT
@@ -334,138 +334,138 @@ END AFFECT
 
 
 
-AFFECT [[11313888899523275277]]
-    TRAVERSE [[8397993708429497603]]
+AFFECT /qt/qml/xofm/libs/toolbar/qml/Toolbar.qml
+    TRAVERSE FocusScope
         LOCATE BEFORE ALL INSERT {
-            function selectFloatEraser(~&214629689753&~) {
-			    ~&197091758&~ ~&214624950331&~ = ~&6504117156&~;
-				~&197085552&~ (~&197091758&~ ~&180978&~ = 0; ~&180978&~ < ~&15827066597889961342&~.~&214622615378&~; ~&180978&~++) {
-					~&197091758&~ entryI = ~&15827066597889961342&~.~&7082786471789&~(~&180978&~).~&6503936152&~;
-					~&5972376&~ (entryI.~&496507535093048780&~ == ~&"7082627422347&~) {
-						~&214624950331&~ = entryI;
+            function selectFloatEraser(input) {
+			    let entry = null;
+				for (let i = 0; i < editingTools.count; i++) {
+					let entryI = editingTools.itemAt(i).item;
+					if (entryI.penToolType == "eraser") {
+						entry = entryI;
 						/* console.log(entry);*/
-						~&214621519406&~;
+						break;
 					}
 				}
-				~&6504254477&~.~&5107434981825242642&~(~&214629689753&~);
-				~&1318897126668497941&~(~&214624950331&~, 0);
+				root.eraserToolSelected(input);
+				requestPenSelect(entry, 0);
 
 
             }
 			function switchPresets(){
-				~&6504254477&~.presetNumber = (~&6504254477&~.presetNumber == 3) ? 1 : (~&6504254477&~.presetNumber == 2 ? 3 : 2)	
+				root.presetNumber = (root.presetNumber == 3) ? 1 : (root.presetNumber == 2 ? 3 : 2)	
 			}
         }
     END TRAVERSE
 END AFFECT
 
-AFFECT [[11806562588218124596]]
-    TRAVERSE [[8397993708429497603]]
-        LOCATE AFTER [[7713405014271992]]
+AFFECT /qml/device/view/documentview/DeviceSceneView.qml
+    TRAVERSE FocusScope
+        LOCATE AFTER openPage
         INSERT { signal floatEraser }
     END TRAVERSE
 END AFFECT
 
-AFFECT [[1224665461898798997]]
-    TRAVERSE [[8397993708429497603]] > [[5728643844066569666]]
+AFFECT /qml/device/view/documentview/DocumentView.qml
+    TRAVERSE FocusScope > DeviceSceneView
     LOCATE AFTER ALL
     INSERT {
         onFloatEraser: {
-            ~&233745975898428&~.selectEraser();
+            toolbar.selectEraser();
         }
     }
 END AFFECT
 
-AFFECT [[1224665461898798997]]
-	IMPORT [[197080199.7083211239901]] 1.0 [[254477762679831355]]
-	IMPORT [[233700934949963.7711528871884381]] 2.15
-	IMPORT [[233700934949963.233693781272506]] 2.15
-	TRAVERSE [[8397993708429497603]]
-		LOCATE AFTER [[5972374]]
+AFFECT /qml/device/view/documentview/DocumentView.qml
+	IMPORT ark.tokens 1.0 ArkTokens
+	IMPORT QtQuick.Controls 2.15
+	IMPORT QtQuick.Layouts 2.15
+	TRAVERSE FocusScope
+		LOCATE AFTER id
 		INSERT {
-			property ~&6503679477&~ shouldAnchorL: ~&214625660372&~
-			property ~&6503679477&~ shouldAnchorLayers: ~&214625660372&~
-			property ~&6503679477&~ timeOutBeforeMoving: ~&214625660372&~
-			property ~&6503679477&~ timeOutBeforeMovingTools: ~&214625660372&~
-			property ~&6503679477&~ collapsed:~&6504329801&~
-		    property ~&6503679477&~ isQuickPenSelected: ~&214625660372&~
+			property bool shouldAnchorL: false
+			property bool shouldAnchorLayers: false
+			property bool timeOutBeforeMoving: false
+			property bool timeOutBeforeMovingTools: false
+			property bool collapsed:true
+		    property bool isQuickPenSelected: false
 		}
 	END TRAVERSE
-	TRAVERSE [[8397993708429497603]] > [[6502786168]]#[[15549782143769420265]]
-		TRAVERSE [[233704648923420]]
-		REPLACE [[16803681506719809816]] WITH{
+	TRAVERSE FocusScope > Item#_uiContainer
+		TRAVERSE Toolbar
+		REPLACE onSelectionToolModeSelected WITH{
 
-            ~&16803681506719809816&~: (~&6504074414&~) => {
-                ~&6504254477&~.~&16888625050052348754&~ = ~&6504074414&~;
-                ~&233745975898428&~.currentSelectionMode = ~&6504074414&~;
+            onSelectionToolModeSelected: (mode) => {
+                root.selectionToolMode = mode;
+                toolbar.currentSelectionMode = mode;
             }
 		}
 		END TRAVERSE
-		TRAVERSE [[233704648923420]]
+		TRAVERSE Toolbar
 			LOCATE AFTER ALL
 			INSERT {
 
-				onLayersToggled: () => { ~&233745975898428&~.floatbarEnabledLayers = !~&233745975898428&~.floatbarEnabledLayers}
+				onLayersToggled: () => { toolbar.floatbarEnabledLayers = !toolbar.floatbarEnabledLayers}
 				
 				onResetFloatBarPosition: () => {
-					~&7082882057113&~.moveToPosition((~&7083038346995&~.~&214646099849&~-~&7082882057113&~.~&214646099849&~)/2,floatQuick.~&7082729686082&~);
-				floatQuick.moveToPosition(~&233704648888572&~.~&180993&~+~&233704648888572&~.~&214646099849&~, 0);
+					layers.moveToPosition((parent.width-layers.width)/2,floatQuick.height);
+				floatQuick.moveToPosition(ToolBar.x+ToolBar.width, 0);
 				}
 				onPresetSave: () => {floatQuick.saveQuickToolFile()}
-				onToolSel: () => { floatQuick.addNewToolOnly("Tool", ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~);
+				onToolSel: () => { floatQuick.addNewToolOnly("Tool", documentViewTools.activePen.tool);
 
 				}
 
-				onColSel: () => { floatQuick.addNewColourOnly("Colour", ~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~, ~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~);
+				onColSel: () => { floatQuick.addNewColourOnly("Colour", documentViewTools.activePen.colorCode, documentViewTools.activePen.color);
 
 				}
-				onThickSel: () => { floatQuick.addNewThickOnly("Thick", ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~);
+				onThickSel: () => { floatQuick.addNewThickOnly("Thick", documentViewTools.activePen.thickness);
 
 				}
-				onFloatAddRedo: () => {floatQuick.addNewToolPlus(~&"6503093235&~, 91, 0, 0) }
-				onFloatAddUndo: () => {floatQuick.addNewToolPlus(~&"6503210847&~, 90, 0,0) }
+				onFloatAddRedo: () => {floatQuick.addNewToolPlus("Redo", 91, 0, 0) }
+				onFloatAddUndo: () => {floatQuick.addNewToolPlus("Undo", 90, 0,0) }
 				onFloatToolSel: () => {
 
-				~&5972376&~ (isQuickPenSelected){
-					floatQuick.quickTool = floatQuick.quickTool.~&7082656280847&~(
-							function(~&6503936152&~) {
-									~&5972376&~(~&7842069035455457876&~.~&13186392338616216743&~(~&6503936152&~.~&6504326343&~)){
-										~&7083121450889&~ !(
-											~&6503936152&~.~&6504326343&~      == ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ &&
-											~&6503936152&~.~&197098340&~       == ~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ &&
-											~&6503936152&~.~&496319807495899597&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ &&
-											~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~
+				if (isQuickPenSelected){
+					floatQuick.quickTool = floatQuick.quickTool.filter(
+							function(item) {
+									if(documentViewTools.isWritingTool(item.tool)){
+										return !(
+											item.tool      == documentViewTools.activePen.tool &&
+											item.rgb       == documentViewTools.activePen.colorCode &&
+											item.paletteEnum == documentViewTools.activePen.color &&
+											item.thickness == documentViewTools.activePen.thickness
 										)
 									}
 
-									~&6503784146&~{
-										~&197102514&~ baseMatch =
-											~&6503936152&~.~&6504326343&~      == ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ &&
-											~&6503936152&~.~&6504337259&~      == ~&7842069035455457876&~.~&8399230650759060099&~ &&
-											~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~;
+									else{
+										var baseMatch =
+											item.tool      == documentViewTools.activePen.tool &&
+											item.type      == documentViewTools.activeTool &&
+											item.thickness == documentViewTools.activePen.thickness;
 
-										~&5972376&~ (~&6503936152&~.~&6504326343&~ == 11) {
+										if (item.tool == 11) {
 
-											~&7083121450889&~ !(baseMatch && ~&6503936152&~.~&233723474542109&~ == ~&6504254477&~.~&16888625050052348754&~);
+											return !(baseMatch && item.capture == root.selectionToolMode);
 										}
 
-										~&7083121450889&~ !baseMatch;
+										return !baseMatch;
 									}
 
 
 											})
 											floatQuick.saveQuickToolFile();
 						}
-				~&6503784146&~{
-						~&5972376&~ (~&7842069035455457876&~.~&13186392338616216743&~(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~)){
+				else{
+						if (documentViewTools.isWritingTool(documentViewTools.activePen.tool)){
 						
 
-						floatQuick.addNewTool(~&7842069035455457876&~.~&8399230650759060099&~, ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~,~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~,~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~, ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~, ~&6504254477&~.~&16888625050052348754&~);
+						floatQuick.addNewTool(documentViewTools.activeTool, documentViewTools.activePen.tool,documentViewTools.activePen.colorCode,documentViewTools.activePen.color, documentViewTools.activePen.thickness, root.selectionToolMode);
 						floatQuick.saveQuickToolFile();
 						} 
-						~&6503784146&~ {
+						else {
 
-							floatQuick.addNewToolPlus(~&7842069035455457876&~.~&8399230650759060099&~, ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~,~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~, ~&6504254477&~.~&16888625050052348754&~);
+							floatQuick.addNewToolPlus(documentViewTools.activeTool, documentViewTools.activePen.tool,documentViewTools.activePen.thickness, root.selectionToolMode);
 						}
 				}
 				
@@ -473,381 +473,381 @@ AFFECT [[1224665461898798997]]
 				}
 			}
 		END TRAVERSE
-		LOCATE AFTER [[233704648923420]]
+		LOCATE AFTER Toolbar
 		INSERT {
 
-	~&233704648908436&~ {
-        ~&5972374&~: floatBarTips
-		~&6504337259&~: ~&254477762679831355&~.~&233704648943284&~.~&254547519794454865&~
-        ~&7083038346995&~: ~&233740803002070&~.~&7083038346995&~
-        readonly property ~&197088788&~ ~&12920758939509216882&~: 112
-        ~&254525457827593836&~: ~&5971598&~.~&6504243191&~(~&10054167583259537218&~.~&180993&~ + ~&12920758939509216882&~, ~&10054167583259537218&~.~&180994&~ + ~&12920758939509216882&~, ~&10054167583259537218&~.~&214646099849&~ - ~&12920758939509216882&~ * 2, ~&10054167583259537218&~.~&7082729686082&~ - ~&12920758939509216882&~ * 2)
+	ToolTip {
+        id: floatBarTips
+		type: ArkTokens.Tooltip.secondary
+        parent: pointTo.parent
+        readonly property int tooltipMargin: 112
+        container: Qt.rect(formatMenuDelegate.x + tooltipMargin, formatMenuDelegate.y + tooltipMargin, formatMenuDelegate.width - tooltipMargin * 2, formatMenuDelegate.height - tooltipMargin * 2)
 
-        ~&233723474528951&~: ~&6504222003&~("Floating Toolbar")
-	~&478136262235079021&~: ~&6504222003&~("Go to https://github.com/FouzR/xovi-extensions on instructions")
-        ~&9019158794145941323&~: ~&5971598&~.~&233696851602406&~
-        ~&233740803002070&~: floatQuick
-        ~&16400326245416126129&~: ~&425121728314878811&~.~&233704648943284&~.~&7712083094340350&~.~&214602223655&~
-        ~&15450610953915458578&~: ~&425121728314878811&~.~&233704648943284&~.~&7712083094340350&~.~&6502877684&~
-        ~&16566225111713296750&~.~&197090674&~: "FloatingToolbarOnboarding"
-        ~&499553103508155554&~: floatQuick.~&233748328658231&~
-	~&17357098090295604850&~ {
-                        ~&5972374&~: floatingGithubProvider
-                        ~&6504315758&~: "https://github.com/FouzR/xovi-extensions"
+        caption: qsTr("Floating Toolbar")
+	description: qsTr("Go to https://github.com/FouzR/xovi-extensions on instructions")
+        closeButtonFocusPolicy: Qt.NoFocus
+        pointTo: floatQuick
+        positionHint: ArkControls.Tooltip.Position.Right
+        horizontalAlignment: ArkControls.Tooltip.Position.Left
+        OnboardingStateProp.key: "FloatingToolbarOnboarding"
+        readyToShow: floatQuick.visible
+	QRCodeProvider {
+                        id: floatingGithubProvider
+                        text: "https://github.com/FouzR/xovi-extensions"
                     }
 
-                    ~&214591687532&~ {
-                        ~&5972374&~: qrcodeFloat
-						~&214646099849&~: 80
-						~&7082729686082&~: 80
-						~&233721384511543&~.~&214640173127&~: ~&7083038346995&~.~&214640173127&~
-						~&233721384511543&~.~&7082507142622&~: ~&7083038346995&~.~&7082507142622&~
-						~&233721384511543&~.~&233736391113274&~: 8
-                        ~&7713012679492661&~: ~&214591687532&~.~&13563680926116790904&~
-                        ~&7083172477658&~: floatingGithubProvider.~&7713145265109183&~
+                    Image {
+                        id: qrcodeFloat
+						width: 80
+						height: 80
+						anchors.right: parent.right
+						anchors.bottom: parent.bottom
+						anchors.margins: 8
+                        fillMode: Image.PreserveAspectFit
+                        source: floatingGithubProvider.imageUrl
                     }
     	}
-			~&425121728314878811&~.~&16765000136167945189&~{
-				~&5972374&~: ~&7082882057113&~
-				property ~&6503679477&~ currentFile: ~&254547437090201330&~.~&7713361680718652&~ || ~&254547437090201330&~.~&7712934851008712&~
+			ArkControls.ContextualMenu{
+				id: layers
+				property bool currentFile: sceneView.notePage || sceneView.document
 				onCurrentFileChanged: floatQuick.loadQuickToolFile();
-				~&233748328658231&~: currentFile && ~&233745975898428&~.floatbarEnabledLayers
-				~&214641137009&~: 1 
-				~&504576868586410052&~: ~&214625660372&~
-				~&6502604167&~.~&7082453764421&~: floatLayerHandle.~&6503754151&~.~&7082453764421&~
-				~&233721384511543&~.~&197100796&~: ~&15793094956877902211&~.shouldAnchorL ? floatQuick.~&7082507142622&~ : ~&254550717068498203&~
-				~&233721384511543&~.~&6504027668&~: ~&15793094956877902211&~.shouldAnchorL ? floatQuick.~&6504027668&~ : ~&254550717068498203&~                
-				property ~&6504243117&~ originalX
-				property ~&6504243117&~ originalY
-				function moveToPosition(newX, ~&6504100076&~) {
-					~&180993&~ = newX
-					~&180994&~ = ~&6504100076&~
+				visible: currentFile && toolbar.floatbarEnabledLayers
+				scale: 1 
+				uniformSize: false
+				Drag.active: floatLayerHandle.drag.active
+				anchors.top: documentView.shouldAnchorL ? floatQuick.bottom : undefined
+				anchors.left: documentView.shouldAnchorL ? floatQuick.left : undefined                
+				property real originalX
+				property real originalY
+				function moveToPosition(newX, newY) {
+					x = newX
+					y = newY
 				}
-				~&14125623155555875541&~{
-				~&7713532151049593&~: 180
-				~&233744706647566&~: 0
-				~&7712155293725601&~{
-					~&214634455770&~: ~&875860941429592&~
-					~&197063777&~{
-						~&7713532151049593&~: 180
-						required property ~&197088788&~ ~&8399738572007762814&~
-						required property ~&7083178290016&~ ~&254537532485249543&~
-						required property ~&6503679477&~ ~&16176988446836973428&~
-						required property ~&6503679477&~ ~&17331784548452830383&~
-						required property ~&6503679477&~ ~&913919069047008973&~
-						required property ~&6503679477&~ ~&17554417316078931200&~
-						required property ~&6503679477&~ ~&8397080192089956641&~
-						required property ~&6503679477&~ ~&8770013474018396819&~
-						~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-							~&233748328658231&~: collapsed
+				ColumnLayout{
+				rotation: 180
+				spacing: 0
+				Repeater{
+					model: sceneLayersModel
+					Row{
+						rotation: 180
+						required property int layerIndex
+						required property string layerName
+						required property bool layerVisible
+						required property bool layerSelected
+						required property bool layerMoveUpEnabled
+						required property bool layerMoveDownEnabled
+						required property bool layerMergeEnabled
+						required property bool layerTrashEnabled
+						ArkControls.ContextualMenu.Button{
+							visible: collapsed
 							
-							~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-							~&6504337259&~: ~&7082882057113&~.~&6504337259&~
+							focusPolicy: Qt.NoFocus
+							type: layers.type
 
-							~&6503165774&~
+							Text
 							{
-							~&6503823200&~.~&7082646817675&~: "Helvetica"
-									~&15450610953915458578&~:  ~&6503165774&~.~&14019785274593562237&~ 
-									~&6014474628714890946&~: ~&6503165774&~.~&14019785292674113803&~ 
-									~&214641774074&~: ~&6503165774&~.Outline
-									~&233748328658231&~: !~&17331784548452830383&~
-									styleColor: ~&"214646069354&~
-									~&233721384511543&~.~&6503816592&~: ~&7083038346995&~ 
+							font.family: "Helvetica"
+									horizontalAlignment:  Text.AlignHCenter 
+									verticalAlignment: Text.AlignVCenter 
+									style: Text.Outline
+									visible: !layerSelected
+									styleColor: "white"
+									anchors.fill: parent 
 
-									~&6503823200&~.pointSize: 30
-									~&6504315758&~: ~&8399738572007762814&~+1
+									font.pointSize: 30
+									text: layerIndex+1
 								}
 							
 
-							~&7713561545874130&~: ~&17331784548452830383&~
-							~&6503165774&~
+							selected: layerSelected
+							Text
 							{
-							~&6503823200&~.~&7082646817675&~: "Helvetica"
-									~&15450610953915458578&~:  ~&6503165774&~.~&14019785274593562237&~ 
-									~&6014474628714890946&~: ~&6503165774&~.~&14019785292674113803&~ 
-									~&214622605608&~: ~&"214646069354&~
-									~&233748328658231&~: ~&17331784548452830383&~
-									~&233721384511543&~.~&6503816592&~: ~&7083038346995&~ 
-									~&6503823200&~.pointSize: 30
-									~&6504315758&~: ~&8399738572007762814&~+1
+							font.family: "Helvetica"
+									horizontalAlignment:  Text.AlignHCenter 
+									verticalAlignment: Text.AlignVCenter 
+									color: "white"
+									visible: layerSelected
+									anchors.fill: parent 
+									font.pointSize: 30
+									text: layerIndex+1
 								}
 							
-							~&254542236275632405&~: () => {~&11179472971324505115&~.~&15004695017937738005&~(~&8399738572007762814&~);}
-							~&383135108587212173&~: () => {tempTextField.~&233748328658231&~ = ~&6504329801&~}
-							~&8399894427451672267&~: () => {tempTextField.~&233748328658231&~ = ~&214625660372&~}
-							~&254501108490678590&~{
-								~&214622605608&~: ~&"214646069354&~
-								~&233721384511543&~ {
-										~&214640173127&~: ~&7083038346995&~.~&6504027668&~
-										~&3441383163516681764&~: ~&7083038346995&~.~&3441383163516681764&~
+							onClicked: () => {sceneController.setCurrentLayer(layerIndex);}
+							onPressAndHold: () => {tempTextField.visible = true}
+							onReleased: () => {tempTextField.visible = false}
+							Rectangle{
+								color: "white"
+								anchors {
+										right: parent.left
+										verticalCenter: parent.verticalCenter
 									}
-									~&7082507052999&~.~&214622605608&~ : ~&"214621299494&~
-									~&7082507052999&~.~&214646099849&~: 5
-								~&233748328658231&~: tempTextField.~&233748328658231&~
-								~&214646099849&~: tempTextField.~&214646099849&~+30 
-								~&7082729686082&~: ~&7083038346995&~.~&7082729686082&~
-								~&15640708674084664669&~: ~&214625660372&~
+									border.color : "black"
+									border.width: 5
+								visible: tempTextField.visible
+								width: tempTextField.width+30 
+								height: parent.height
+								antialiasing: false
 							}
-							~&6503165774&~{
-								~&5972374&~: tempTextField
-								~&233748328658231&~: ~&214625660372&~
-								~&233721384511543&~ {
-									~&214640173127&~: ~&7083038346995&~.~&6504027668&~
-									~&499747351624466981&~: 15
-									~&3441383163516681764&~: ~&7083038346995&~.~&3441383163516681764&~
+							Text{
+								id: tempTextField
+								visible: false
+								anchors {
+									right: parent.left
+									rightMargin: 15
+									verticalCenter: parent.verticalCenter
 								}
-								~&6503823200&~.pointSize: 26
-								~&6504315758&~: ~&254537532485249543&~
+								font.pointSize: 26
+								text: layerName
 							}
-							~&254501108490678590&~ {
-									~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-									~&214622605608&~: ~&"214646069354&~
-									~&233748328658231&~: timeOutBeforeMoving
+							Rectangle {
+									anchors.fill: parent
+									color: "white"
+									visible: timeOutBeforeMoving
 							}
 						}
-						~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-							~&233748328658231&~: collapsed
-							~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+						ArkControls.ContextualMenu.Button{
+							visible: collapsed
+							focusPolicy: Qt.NoFocus
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-							~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-							~&7713561545874130&~: ~&17331784548452830383&~
-							~&8399601734642709923&~: ~&16176988446836973428&~?~&"13873223703509116915&~ : ~&"5203921373578675596&~ 
-							~&254542236275632405&~: () => {~&11179472971324505115&~.~&15429249516595318624&~(~&8399738572007762814&~, !~&11179472971324505115&~.~&10294555304921692560&~(~&8399738572007762814&~)); }
+							type: layers.type
+							selected: layerSelected
+							iconSource: layerVisible?"qrc:/ark/icons/eye" : "qrc:/ark/icons/eye_closed" 
+							onClicked: () => {sceneController.setLayerVisible(layerIndex, !sceneController.isLayerVisible(layerIndex)); }
 						}
-						~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-							~&233748328658231&~: collapsed
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+						ArkControls.ContextualMenu.Button{
+							visible: collapsed
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-							~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-							~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-							~&8399601734642709923&~: ~&913919069047008973&~ ?~&"8609871180810563551&~:~&"6968812152144239186&~
-							~&254542236275632405&~: () => {~&11179472971324505115&~.~&254539531633309245&~(~&8399738572007762814&~, ~&8399738572007762814&~ + 1);}
+							focusPolicy: Qt.NoFocus
+							type: layers.type
+							iconSource: layerMoveUpEnabled ?"qrc:/ark/icons/arrow_up":"qrc:/ark/icons/x_large"
+							onClicked: () => {sceneController.moveLayer(layerIndex, layerIndex + 1);}
 						}
-						~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-							~&233748328658231&~: collapsed
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+						ArkControls.ContextualMenu.Button{
+							visible: collapsed
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-							~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-							~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-							~&8399601734642709923&~: ~&17554417316078931200&~ ?~&"5203726458250878130&~:~&"6968812152144239186&~
-							~&254542236275632405&~: () => {~&11179472971324505115&~.~&254539531633309245&~(~&8399738572007762814&~, ~&8399738572007762814&~ - 1);}
+							focusPolicy: Qt.NoFocus
+							type: layers.type
+							iconSource: layerMoveDownEnabled ?"qrc:/ark/icons/arrow_down":"qrc:/ark/icons/x_large"
+							onClicked: () => {sceneController.moveLayer(layerIndex, layerIndex - 1);}
 						}
 						
-						~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-							~&233748328658231&~: collapsed
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+						ArkControls.ContextualMenu.Button{
+							visible: collapsed
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-							~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-							~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-							~&8399601734642709923&~: ~&8397080192089956641&~ ?~&"57216753314333216&~ : ~&"6968812152144239186&~ 
-							~&254542236275632405&~: () => {~&5972376&~ (~&8397080192089956641&~){~&11179472971324505115&~.~&6120158710627366510&~(~&8399738572007762814&~);}}
+							focusPolicy: Qt.NoFocus
+							type: layers.type
+							iconSource: layerMergeEnabled ?"qrc:/ark/icons/merge" : "qrc:/ark/icons/x_large" 
+							onClicked: () => {if (layerMergeEnabled){sceneController.mergeLayerDown(layerIndex);}}
 						}
-						~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-							~&233748328658231&~: collapsed
-							~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+						ArkControls.ContextualMenu.Button{
+							visible: collapsed
+							focusPolicy: Qt.NoFocus
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-							~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-							~&8399601734642709923&~: ~&8770013474018396819&~ ?~&"8609871989899886756&~ :~&"7312727925064657782&~  
-							~&254542236275632405&~: () => {~&5972376&~ (~&8770013474018396819&~){~&11179472971324505115&~.~&478126504994672793&~(~&8399738572007762814&~);}}
+							type: layers.type
+							iconSource: layerTrashEnabled ?"qrc:/ark/icons/trashcan" :"qrc:/ark/icons/trashcan_delete"  
+							onClicked: () => {if (layerTrashEnabled){sceneController.deleteLayer(layerIndex);}}
 						}
 					}
 				}
-				~&197063777&~{
-				~&7713532151049593&~: 180
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~ {
-					~&5972374&~: floatLayerHandleParent
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: ~&7082882057113&~.~&6504337259&~			
-					~&383135108587212173&~: () => {timeOutBeforeMoving = !timeOutBeforeMoving}
-					~&8399601734642709923&~: collapsed ? ~&"551690684902850748&~ : ~&"4663243347623906140&~
-					~&254494525842443467&~ {
-						~&5972374&~: floatLayerHandle
-						~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-						~&6503754151&~.~&7083194890448&~: ~&7082882057113&~
-						~&383135108587212173&~: () => {collapsed = !collapsed}
-						~&254542253295368380&~: () => {~&8399923449641527401&~.~&499576305949137387&~ = ~&6504329801&~;~&7082882057113&~.originalX = ~&7082882057113&~.~&180993&~;
-						~&7082882057113&~.originalY = ~&7082882057113&~.~&180994&~;
-						timeOutBeforeMoving = ~&6504329801&~;
+				Row{
+				rotation: 180
+				ArkControls.ContextualMenu.Button {
+					id: floatLayerHandleParent
+					focusPolicy: Qt.NoFocus
+					type: layers.type			
+					onPressAndHold: () => {timeOutBeforeMoving = !timeOutBeforeMoving}
+					iconSource: collapsed ? "qrc:/ark/icons/multicolor/toolbar_show" : "qrc:/ark/icons/toolbar_hide"
+					MouseArea {
+						id: floatLayerHandle
+						anchors.fill: parent
+						drag.target: layers
+						onPressAndHold: () => {collapsed = !collapsed}
+						onPressed: () => {pageSlider.requestMono = true;layers.originalX = layers.x;
+						layers.originalY = layers.y;
+						timeOutBeforeMoving = true;
 						}
-						property ~&197088788&~ snapThreshold: 30
-						~&8399894427451672267&~: () => {~&8399923449641527401&~.~&499576305949137387&~ = ~&214625660372&~;timeOutBeforeMoving=~&214625660372&~;}
-						~&12756630929064311461&~: {
-							~&5972376&~ (~&6503754151&~.~&7082453764421&~) {
-								~&197102514&~ centerX = ~&7082882057113&~.~&180993&~ + ~&7082882057113&~.~&214646099849&~ / 2
-								~&197102514&~ centerY = ~&7082882057113&~.~&180994&~ + ~&7082882057113&~.~&7082729686082&~ / 2
-								~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180993&~) < snapThreshold) {
-									~&7082882057113&~.~&180993&~ = 0
+						property int snapThreshold: 30
+						onReleased: () => {pageSlider.requestMono = false;timeOutBeforeMoving=false;}
+						onPositionChanged: {
+							if (drag.active) {
+								var centerX = layers.x + layers.width / 2
+								var centerY = layers.y + layers.height / 2
+								if (Math.abs(layers.x) < snapThreshold) {
+									layers.x = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180993&~ + ~&7082882057113&~.~&214646099849&~ - ~&6504254477&~.~&214646099849&~) < snapThreshold) {
-									~&7082882057113&~.~&180993&~ = ~&6504254477&~.~&214646099849&~ - ~&7082882057113&~.~&214646099849&~
+								else if (Math.abs(layers.x + layers.width - root.width) < snapThreshold) {
+									layers.x = root.width - layers.width
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(centerX - ~&6504254477&~.~&214646099849&~ / 2) < snapThreshold) {
-									~&7082882057113&~.~&180993&~ = ~&6504254477&~.~&214646099849&~ / 2 - ~&7082882057113&~.~&214646099849&~ / 2
+								else if (Math.abs(centerX - root.width / 2) < snapThreshold) {
+									layers.x = root.width / 2 - layers.width / 2
 								}
-								~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180994&~) < snapThreshold) {
-									~&7082882057113&~.~&180994&~ = 0
+								if (Math.abs(layers.y) < snapThreshold) {
+									layers.y = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180994&~ + ~&7082882057113&~.~&7082729686082&~ - ~&6504254477&~.~&7082729686082&~) < snapThreshold) {
-									~&7082882057113&~.~&180994&~ = ~&6504254477&~.~&7082729686082&~ - ~&7082882057113&~.~&7082729686082&~
+								else if (Math.abs(layers.y + layers.height - root.height) < snapThreshold) {
+									layers.y = root.height - layers.height
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(centerY - ~&6504254477&~.~&7082729686082&~ / 2) < snapThreshold) {
-									~&7082882057113&~.~&180994&~ = ~&6504254477&~.~&7082729686082&~ / 2 - ~&7082882057113&~.~&7082729686082&~ / 2
+								else if (Math.abs(centerY - root.height / 2) < snapThreshold) {
+									layers.y = root.height / 2 - layers.height / 2
 								}
-								~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180993&~) < snapThreshold && 
-									~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180994&~) < snapThreshold) {
-									~&7082882057113&~.~&180993&~ = 0
-									~&7082882057113&~.~&180994&~ = 0
+								if (Math.abs(layers.x) < snapThreshold && 
+									Math.abs(layers.y) < snapThreshold) {
+									layers.x = 0
+									layers.y = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180993&~ + ~&7082882057113&~.~&214646099849&~ - ~&6504254477&~.~&214646099849&~) < snapThreshold && 
-										 ~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180994&~) < snapThreshold) {
-									~&7082882057113&~.~&180993&~ = ~&6504254477&~.~&214646099849&~ - ~&7082882057113&~.~&214646099849&~
-									~&7082882057113&~.~&180994&~ = 0
+								else if (Math.abs(layers.x + layers.width - root.width) < snapThreshold && 
+										 Math.abs(layers.y) < snapThreshold) {
+									layers.x = root.width - layers.width
+									layers.y = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180993&~) < snapThreshold && 
-										 ~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180994&~ + ~&7082882057113&~.~&7082729686082&~ - ~&6504254477&~.~&7082729686082&~) < snapThreshold) {
-									~&7082882057113&~.~&180993&~ = 0
-									~&7082882057113&~.~&180994&~ = ~&6504254477&~.~&7082729686082&~ - ~&7082882057113&~.~&7082729686082&~
+								else if (Math.abs(layers.x) < snapThreshold && 
+										 Math.abs(layers.y + layers.height - root.height) < snapThreshold) {
+									layers.x = 0
+									layers.y = root.height - layers.height
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180993&~ + ~&7082882057113&~.~&214646099849&~ - ~&6504254477&~.~&214646099849&~) < snapThreshold && 
-										 ~&6502909715&~.~&197079679&~(~&7082882057113&~.~&180994&~ + ~&7082882057113&~.~&7082729686082&~ - ~&6504254477&~.~&7082729686082&~) < snapThreshold) {
-									~&7082882057113&~.~&180993&~ = ~&6504254477&~.~&214646099849&~ - ~&7082882057113&~.~&214646099849&~
-									~&7082882057113&~.~&180994&~ = ~&6504254477&~.~&7082729686082&~ - ~&7082882057113&~.~&7082729686082&~
+								else if (Math.abs(layers.x + layers.width - root.width) < snapThreshold && 
+										 Math.abs(layers.y + layers.height - root.height) < snapThreshold) {
+									layers.x = root.width - layers.width
+									layers.y = root.height - layers.height
 								}
 							}
 						}
 					}							
 				}
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-					~&233748328658231&~: collapsed
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+				ArkControls.ContextualMenu.Button{
+					visible: collapsed
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-					~&8399601734642709923&~: ~&11179472971324505115&~.~&6293760240560209047&~?~&"13873223703509116915&~ : ~&"5203921373578675596&~ 
-					~&254542236275632405&~: () => {~&11179472971324505115&~.~&15645658936879579139&~(!~&11179472971324505115&~.~&6293760240560209047&~);}
+					focusPolicy: Qt.NoFocus
+					type: layers.type
+					iconSource: sceneController.backgroundVisible?"qrc:/ark/icons/eye" : "qrc:/ark/icons/eye_closed" 
+					onClicked: () => {sceneController.setBackgroundVisible(!sceneController.backgroundVisible);}
 				}
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~ {
-					~&5972374&~: floatbarNewPage
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+				ArkControls.ContextualMenu.Button {
+					id: floatbarNewPage
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-					~&233748328658231&~: collapsed
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-					~&8399601734642709923&~: ~&"8609871797689043317&~
-					~&254542236275632405&~: () => {
-					~&6504254477&~.~&233720993465423&~(~&7712934851008712&~);
-                ~&6504254477&~.~&2001677172471165524&~(~&6504254477&~.~&7712934851008712&~, ~&"5600959279509428121&~);
+					visible: collapsed
+					focusPolicy: Qt.NoFocus
+					type: layers.type
+					iconSource: "qrc:/ark/icons/page_add"
+					onClicked: () => {
+					root.addPage(document);
+                root.reportPageAdded(root.document, "floating button");
                 }
 				}
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-					~&5972374&~: layerMenuOpen
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+				ArkControls.ContextualMenu.Button{
+					id: layerMenuOpen
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-					~&233748328658231&~: collapsed
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-					~&8399601734642709923&~: ~&875860941429592&~.~&214622615378&~==5?~&"18215817719560467479&~: ~&"5724976033632521381&~
-					~&254542236275632405&~: () => {~&11179472971324505115&~.~&7712792779634991&~();}
+					visible: collapsed
+					focusPolicy: Qt.NoFocus
+					type: layers.type
+					iconSource: sceneLayersModel.count==5?"qrc:/ark/icons/warning_circle": "qrc:/ark/icons/plus_circle"
+					onClicked: () => {sceneController.addLayer();}
 				}
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-					~&233748328658231&~: collapsed
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+				ArkControls.ContextualMenu.Button{
+					visible: collapsed
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-					~&8399601734642709923&~: ~&"17368093275190359907&~
-					~&254542236275632405&~: () => {
+					focusPolicy: Qt.NoFocus
+					type: layers.type
+					iconSource: "qrc:/ark/icons/page_overview"
+					onClicked: () => {
 
-					~&6504254477&~.~&16350671428670863634&~();
-                ~&233745975898428&~.~&4014536055437803931&~();
-                ~&254547437090201330&~.~&11077763042784530127&~.~&214622501183&~();
-                ~&214637513689&~.~&501110654842254526&~([]);
-                ~&214637513689&~.~&481797509586303710&~ = ~&214625660372&~;
-                ~&6504254477&~.~&6037617151381287454&~ = ~&214625660372&~;
-                ~&6664375799761237873&~(~&"7496683744960397757&~);
+					root.openOverview();
+                toolbar.selectLastTool();
+                sceneView.hwcSelectionTool.close();
+                pages.setSelected([]);
+                pages.fromConvert = false;
+                root.newPageVisible = false;
+                reportToolbarActionTelemetry("Page overview");
 
 										}
 				}
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~{
-					~&233748328658231&~: collapsed
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMoving
+				ArkControls.ContextualMenu.Button{
+					visible: collapsed
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMoving
 					}
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: ~&7082882057113&~.~&6504337259&~
-					~&8399601734642709923&~: ~&"8609871973577012300&~
-					~&254542236275632405&~: () => {
+					focusPolicy: Qt.NoFocus
+					type: layers.type
+					iconSource: "qrc:/ark/icons/template"
+					onClicked: () => {
 
-                ~&6504254477&~.~&6037617151381287454&~ = ~&214625660372&~;
+                root.newPageVisible = false;
 
-                ~&214622607920&~ ~&5453223760590555046&~ = ~&6504254477&~.~&7712934851008712&~.~&14140055321554169705&~(~&6504254477&~.~&477346483278306569&~);
-                ~&214622607920&~ ~&1536662069776115272&~ = ~&254503934078645080&~.~&6504032453&~().~&6503816650&~((~&180989&~) => ~&180989&~.~&7713012672362186&~ === ~&5453223760590555046&~) || ~&6504117156&~;
+                const templateFilename = root.document.templateForPage(root.currentPage);
+                const currentTemplate = Templates.list().find((t) => t.filename === templateFilename) || null;
 
-                ~&6504254477&~.~&482865290967253827&~.~&8400213107195236010&~(~&433854763438791459&~.~&7854348604917286446&~);
-                ~&2766288418351025740&~.~&6504147419&~(~&"14104685122501892360&~, {
-                    ~&1536662069776115272&~: ~&1536662069776115272&~,
-                    ~&254542233857860741&~: (~&254521482433120454&~, ~&14140055315134608292&~, ~&254547540603778934&~) => {
-                            ~&5972376&~ (~&14140055315134608292&~) {
-                                ~&214622607920&~ ~&5453223760590555046&~ = ~&254521482433120454&~?.~&7713012672362186&~ ?? "";
+                root.ghostBuster.viewChange(GhostBuster.DocumentViewDialogOpened);
+                windowNavigator.open("document/window/template-selector", {
+                    currentTemplate: currentTemplate,
+                    onApplied: (aTemplate, templateApplied, setRecent) => {
+                            if (templateApplied) {
+                                const templateFilename = aTemplate?.filename ?? "";
 
 
-                                ~&5972376&~ (~&6504254477&~?.~&7712934851008712&~?.~&6504337259&~ === ~&214587000859&~.~&7711571060833448&~) {
-                                    ~&243560541951849292&~.~&1105490548312631253&~(~&6504254477&~.~&7712934851008712&~, ~&6504254477&~.~&477346483278306569&~, ~&5453223760590555046&~);
-                                    ~&14957463343886922390&~.~&3782439992632963651&~(~&254521482433120454&~, ~&7715670138039876599&~.~&17216814491807711990&~.~&233680151361064&~);
+                                if (root?.document?.type === Entry.Document) {
+                                    DocumentController.setTemplateForPage(root.document, root.currentPage, templateFilename);
+                                    _documentMethodsTelemetry.templateAction(aTemplate, DocumentMethodsTelemetry.TemplateActions.Applied);
 
-                                    ~&214622607920&~ ~&8399622918519338138&~ = !~&254521482433120454&~?.~&254537518241907188&~;
+                                    const isPortrait = !aTemplate?.landscape;
 
-                                    ~&2918312801265623842&~.~&4385859953910933601&~(~&6504254477&~.~&7712934851008712&~.~&5972374&~, ~&8399622918519338138&~ ? ~&5971598&~.~&7712325863825955&~ : ~&5971598&~.~&8398087155484884339&~);
-                                    ~&5972376&~ (!~&14515220915283302886&~.~&12597697628854965581&~ && ~&8399622918519338138&~ !== ~&6504254477&~.~&495572996767745525&~.~&14593461789319363686&~) {
+                                    LibraryController.setOrientation(root.document.id, isPortrait ? Qt.Vertical : Qt.Horizontal);
+                                    if (!KeyboardInfo.keyboardConnected && isPortrait !== root.orientation.isPortraitOrientation) {
 
-                                        ~&6504254477&~.~&495572996767745525&~.~&16090618959592315326&~(~&8399622918519338138&~ ?
-                                                                                           ~&15127344822801216671&~.~&446562469239283157&~.~&7712083068169310&~ :
-                                                                                           ~&15127344822801216671&~.~&446562469239283157&~.~&5296368389125482037&~);
+                                        root.orientation.requestOneShotOrientation(isPortrait ?
+                                                                                           WindowLayout.Orientation.Portrait :
+                                                                                           WindowLayout.Orientation.InvertedLandscape);
                                     }
 
-                                    ~&5972376&~ (~&254547540603778934&~) {
-                                        ~&254503934078645080&~.~&1229090406755731794&~(~&254521482433120454&~);
+                                    if (setRecent) {
+                                        Templates.setRecentTemplate(aTemplate);
                                     }
                                 }
 
 
-                            ~&6504254477&~.~&10834421236958902336&~(~&254521482433120454&~);
-                            ~&6504254477&~.~&482865290967253827&~.~&8400213107195236010&~(~&433854763438791459&~.~&7854348604443282861&~);
+                            root.reportTemplateSetFromDocument(aTemplate);
+                            root.ghostBuster.viewChange(GhostBuster.DocumentViewDialogClosed);
                         }
                     },
-                    ~&8399894427373474444&~: () => {
-                        ~&6504254477&~.~&482865290967253827&~.~&8400213107195236010&~(~&433854763438791459&~.~&7854348604443282861&~);
+                    onRejected: () => {
+                        root.ghostBuster.viewChange(GhostBuster.DocumentViewDialogClosed);
                     }
 
                 });
@@ -856,203 +856,203 @@ AFFECT [[1224665461898798997]]
 				}
 				}
 				}
-			~&425121728314878811&~.~&16765000136167945189&~ {
-				~&5972374&~: floatQuick
-				property ~&6503679477&~ currentFile: ~&254547437090201330&~.~&7713361680718652&~ || ~&254547437090201330&~.~&7712934851008712&~
-				~&233748328658231&~: currentFile && ~&233745975898428&~.floatbarQuickk
+			ArkControls.ContextualMenu {
+				id: floatQuick
+				property bool currentFile: sceneView.notePage || sceneView.document
+				visible: currentFile && toolbar.floatbarQuickk
 				onCurrentFileChanged: loadQuickToolFile();
-				~&214641137009&~: 1 
-				~&504576868586410052&~: ~&214625660372&~
-				~&6502604167&~.~&7082453764421&~: floatBarHandle4.~&6503754151&~.~&7082453764421&~
-				property ~&6503679477&~ moveTool: ~&214625660372&~
-				property ~&6504243117&~ originalX
-				property ~&6504243117&~ originalY
-				function moveToPosition(newX, ~&6504100076&~) {
-					~&180993&~ = newX
-					~&180994&~ = ~&6504100076&~
+				scale: 1 
+				uniformSize: false
+				Drag.active: floatBarHandle4.drag.active
+				property bool moveTool: false
+				property real originalX
+				property real originalY
+				function moveToPosition(newX, newY) {
+					x = newX
+					y = newY
 				}					
 
-				property ~&197102514&~ selBut: ~&6504117156&~
-				property ~&197088788&~  presetState: ~&233745975898428&~.presetNumber
-				property ~&6503679477&~ quickToolOn: ~&233745975898428&~.floatbarQuickk
-				property ~&6503679477&~ layersOn: ~&233745975898428&~.floatbarEnabledLayers
-				property ~&197102514&~ quickTool: []
-				property ~&6504243117&~ total_width
-				function addNewTool( ~&7713617204171177&~, toolId, toolRGB, toolPalette,toolThickness, selCapture) {
-					quickTool.~&6504189257&~({
-						~&6504337259&~: ~&7713617204171177&~,
-						~&6504326343&~: toolId,
-						~&197098340&~: toolRGB,
-						~&496319807495899597&~: toolPalette,
-						~&254549061334391125&~: toolThickness,
-						~&233723474542109&~: selCapture
+				property var selBut: null
+				property int  presetState: toolbar.presetNumber
+				property bool quickToolOn: toolbar.floatbarQuickk
+				property bool layersOn: toolbar.floatbarEnabledLayers
+				property var quickTool: []
+				property real total_width
+				function addNewTool( toolType, toolId, toolRGB, toolPalette,toolThickness, selCapture) {
+					quickTool.push({
+						type: toolType,
+						tool: toolId,
+						rgb: toolRGB,
+						paletteEnum: toolPalette,
+						thickness: toolThickness,
+						capture: selCapture
 					})
 					quickToolChanged()
 				}
-				function addNewToolPlus( ~&7713617204171177&~, toolId, toolThickness, toolCapture) {
-					quickTool.~&6504189257&~({
-						~&6504337259&~: ~&7713617204171177&~,
-						~&6504326343&~: toolId,
-						~&254549061334391125&~: toolThickness,
-						~&233723474542109&~: toolCapture
-					})
-					quickToolChanged()
-				}
-
-				function addNewToolOnly(~&7713617204171177&~, toolId){
-					quickTool.~&6504189257&~({
-						~&6504337259&~: ~&7713617204171177&~,
-						~&6504326343&~: toolId,
+				function addNewToolPlus( toolType, toolId, toolThickness, toolCapture) {
+					quickTool.push({
+						type: toolType,
+						tool: toolId,
+						thickness: toolThickness,
+						capture: toolCapture
 					})
 					quickToolChanged()
 				}
 
-				function addNewColourOnly(~&7713617204171177&~, toolRGB, toolPalette){
-					quickTool.~&6504189257&~({
-						~&6504337259&~: ~&7713617204171177&~,
-						~&197098340&~: toolRGB,
-						~&496319807495899597&~: toolPalette
+				function addNewToolOnly(toolType, toolId){
+					quickTool.push({
+						type: toolType,
+						tool: toolId,
 					})
 					quickToolChanged()
 				}
 
-				function addNewThickOnly(~&7713617204171177&~, toolThickness){
-					quickTool.~&6504189257&~({
-						~&6504337259&~: ~&7713617204171177&~,
-						~&254549061334391125&~: toolThickness,
+				function addNewColourOnly(toolType, toolRGB, toolPalette){
+					quickTool.push({
+						type: toolType,
+						rgb: toolRGB,
+						paletteEnum: toolPalette
+					})
+					quickToolChanged()
+				}
+
+				function addNewThickOnly(toolType, toolThickness){
+					quickTool.push({
+						type: toolType,
+						thickness: toolThickness,
 					})
 					quickToolChanged()
 				}
 				function moveQuickTool(fromIndex, toIndex) {
-					~&5972376&~ (fromIndex < 0 || fromIndex >= quickTool.~&7082886407723&~ || 
-						toIndex < 0 || toIndex >= quickTool.~&7082886407723&~) {
-						~&7083121450889&~ ~&214625660372&~;
+					if (fromIndex < 0 || fromIndex >= quickTool.length || 
+						toIndex < 0 || toIndex >= quickTool.length) {
+						return false;
 					}
-					~&214622607920&~ toolToMove = quickTool.~&7083173330345&~(fromIndex, 1)[0];
-					quickTool.~&7083173330345&~(toIndex, 0, toolToMove);
+					const toolToMove = quickTool.splice(fromIndex, 1)[0];
+					quickTool.splice(toIndex, 0, toolToMove);
 					quickToolChanged();
-					~&7083121450889&~ ~&6504329801&~;
+					return true;
 				}
 				function saveQuickToolFile() {
-					~&197091758&~ xhr =                                   new                                  XMLHttpRequest();
-					~&197091758&~ ~&6503736259&~ = {
+					let xhr =                                       new                                      XMLHttpRequest();
+					let data = {
 						quickTool: quickTool,
-						isfloatQuickActive: ~&233745975898428&~.floatbarQuickk,
-						isLayersActive: ~&233745975898428&~.floatbarEnabledLayers,
-						layersPositionX: ~&6502909715&~.~&197079679&~((~&7082882057113&~.~&180993&~-~&6504254477&~.~&214646099849&~)/~&6504254477&~.~&214646099849&~),
-						layersPositionY: ~&6502909715&~.~&197079679&~((~&7082882057113&~.~&180994&~-~&6504254477&~.~&7082729686082&~)/~&6504254477&~.~&7082729686082&~),
-						quickPositionX: ~&6502909715&~.~&197079679&~((floatQuick.~&180993&~-~&6504254477&~.~&214646099849&~)/~&6504254477&~.~&214646099849&~),
-						quickPositionY: ~&6502909715&~.~&197079679&~((floatQuick.~&180994&~-~&6504254477&~.~&7082729686082&~)/~&6504254477&~.~&7082729686082&~)
+						isfloatQuickActive: toolbar.floatbarQuickk,
+						isLayersActive: toolbar.floatbarEnabledLayers,
+						layersPositionX: Math.abs((layers.x-root.width)/root.width),
+						layersPositionY: Math.abs((layers.y-root.height)/root.height),
+						quickPositionX: Math.abs((floatQuick.x-root.width)/root.width),
+						quickPositionY: Math.abs((floatQuick.y-root.height)/root.height)
 					};
-					~&197091758&~ dataStr = ~&6502785411&~.~&254548178208422824&~(~&6503736259&~);
-					~&5972376&~ (presetState === 1){
-					xhr.~&6504147419&~("PUT", "file:///home/root/quickTool.json");}
-					~&6503784146&~ ~&5972376&~ (presetState === 2){
-					xhr.~&6504147419&~("PUT", "file:///home/root/quickTool2.json");}
-					~&6503784146&~ {xhr.~&6504147419&~("PUT", "file:///home/root/quickTool3.json");}
+					let dataStr = JSON.stringify(data);
+					if (presetState === 1){
+					xhr.open("PUT", "file:///home/root/quickTool.json");}
+					else if (presetState === 2){
+					xhr.open("PUT", "file:///home/root/quickTool2.json");}
+					else {xhr.open("PUT", "file:///home/root/quickTool3.json");}
 					xhr.onreadystatechange = function() {
-						~&5972376&~ (xhr.readyState === XMLHttpRequest.DONE) {
-							~&233724020023100&~.~&197092075&~("Save completed");
+						if (xhr.readyState === XMLHttpRequest.DONE) {
+							console.log("Save completed");
 						}
 					};
-					xhr.~&6504279475&~(dataStr);
+					xhr.send(dataStr);
 				}
 				function loadQuickToolFile() {
-					~&197091758&~ xhr =                                                                     new                                                                     XMLHttpRequest();
-					~&5972376&~ (presetState===1){
-					xhr.~&6504147419&~("GET", "file:///home/root/quickTool.json");}
-					~&6503784146&~ ~&5972376&~ (presetState===2){
-					xhr.~&6504147419&~("GET", "file:///home/root/quickTool2.json");}
-					~&6503784146&~ {xhr.~&6504147419&~("GET", "file:///home/root/quickTool3.json");}
+					let xhr =                                                                         new                                                                         XMLHttpRequest();
+					if (presetState===1){
+					xhr.open("GET", "file:///home/root/quickTool.json");}
+					else if (presetState===2){
+					xhr.open("GET", "file:///home/root/quickTool2.json");}
+					else {xhr.open("GET", "file:///home/root/quickTool3.json");}
 					xhr.onreadystatechange = function() {
-						~&5972376&~ (xhr.readyState === XMLHttpRequest.DONE) {
+						if (xhr.readyState === XMLHttpRequest.DONE) {
 							try {
-								~&197091758&~ ~&6503736259&~ = ~&6502785411&~.parse(xhr.responseText);
-								quickTool = ~&6503736259&~.quickTool || [];
-								~&233745975898428&~.floatbarQuickk = ~&6503736259&~.isfloatQuickActive !== ~&254550717068498203&~ ? ~&6503736259&~.isfloatQuickActive : ~&214625660372&~;
-								~&233745975898428&~.floatbarEnabledLayers = ~&6503736259&~.isLayersActive !== ~&254550717068498203&~ ? ~&6503736259&~.isLayersActive : ~&214625660372&~;
-								floatQuick.~&180993&~ = ~&6503736259&~.quickPositionX !== ~&254550717068498203&~ ? ((1-~&6503736259&~.quickPositionX)*~&6504254477&~.~&214646099849&~ ) : 0;
-								floatQuick.~&180994&~ = ~&6503736259&~.quickPositionY !== ~&254550717068498203&~ ? ((1-~&6503736259&~.quickPositionY)*~&6504254477&~.~&7082729686082&~) : 0;
-								~&7082882057113&~.~&180993&~ = ~&6503736259&~.layersPositionX !== ~&254550717068498203&~ ? ((1- ~&6503736259&~.layersPositionX)*~&6504254477&~.~&214646099849&~) : 0;
-								~&7082882057113&~.~&180994&~ = ~&6503736259&~.layersPositionY !== ~&254550717068498203&~ ? ((1- ~&6503736259&~.layersPositionY)*~&6504254477&~.~&7082729686082&~) : 0;
-							} catch (~&180974&~) {
-								~&233724020023100&~.~&214625091795&~("Failed to parse file:", ~&180974&~);
+								let data = JSON.parse(xhr.responseText);
+								quickTool = data.quickTool || [];
+								toolbar.floatbarQuickk = data.isfloatQuickActive !== undefined ? data.isfloatQuickActive : false;
+								toolbar.floatbarEnabledLayers = data.isLayersActive !== undefined ? data.isLayersActive : false;
+								floatQuick.x = data.quickPositionX !== undefined ? ((1-data.quickPositionX)*root.width ) : 0;
+								floatQuick.y = data.quickPositionY !== undefined ? ((1-data.quickPositionY)*root.height) : 0;
+								layers.x = data.layersPositionX !== undefined ? ((1- data.layersPositionX)*root.width) : 0;
+								layers.y = data.layersPositionY !== undefined ? ((1- data.layersPositionY)*root.height) : 0;
+							} catch (e) {
+								console.error("Failed to parse file:", e);
 								quickTool = [];
-								~&233745975898428&~.onboarded = ~&214625660372&~;
+								toolbar.onboarded = false;
 							}
 						}
 					};
-					xhr.~&6504279475&~();
+					xhr.send();
 				}
-				~&254480451320573660&~.~&495334332051582499&~: {
+				Component.onCompleted: {
 					loadQuickToolFile();
 
 				}
 				onPresetStateChanged: {loadQuickToolFile();} 
 
 
-			~&8398044571386570029&~ {
-				~&5972374&~: gridLayoutObject
-				~&6503819969&~: (((floatQuick.~&180993&~<60)||(floatQuick.~&180993&~>0.83*~&6504254477&~.~&214646099849&~))&&(floatQuick.~&180994&~<0.91*~&6504254477&~.~&7082729686082&~))? ~&8398044571386570029&~.~&454090249410509812&~:~&8398044571386570029&~.~&441360769245023669&~  
-				~&3009194557570366524&~: 0
-				~&8400036622101322246&~: 0
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~ {
-					~&5972374&~: floatBarHandleParent4
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: floatQuick.~&6504337259&~
-					~&8399601734642709923&~: ~&233745975898428&~.floatbarQuick ? ~&"551690684902850748&~ : ~&"4663243347623906140&~
-					~&254494525842443467&~ {
-						~&5972374&~: floatBarHandle4
-						~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-						~&6503754151&~.~&7083194890448&~: floatQuick
-						~&254542253295368380&~: () => { ~&8399923449641527401&~.~&499576305949137387&~ = ~&6504329801&~;
-						floatQuick.originalX = floatQuick.~&180993&~;
-						floatQuick.originalY = floatQuick.~&180994&~	;
-						timeOutBeforeMovingTools=~&6504329801&~}
-						property ~&197088788&~ snapThreshold: 30
-						~&383135108587212173&~: () => { ~&233745975898428&~.floatbarQuick = !~&233745975898428&~.floatbarQuick;}  
-						~&8399894427451672267&~: () => { ~&8399923449641527401&~.~&499576305949137387&~ = ~&214625660372&~;timeOutBeforeMovingTools=~&214625660372&~;}
-						~&12756630929064311461&~: {
-							~&5972376&~ (~&6503754151&~.~&7082453764421&~) {
-								~&197102514&~ centerX = floatQuick.~&180993&~ + floatQuick.~&214646099849&~ / 2
-								~&197102514&~ centerY = floatQuick.~&180994&~ + floatQuick.~&7082729686082&~ / 2
-								~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180993&~) < snapThreshold) {
-									floatQuick.~&180993&~ = 0
+			GridLayout {
+				id: gridLayoutObject
+				flow: (((floatQuick.x<60)||(floatQuick.x>0.83*root.width))&&(floatQuick.y<0.91*root.height))? GridLayout.TopToBottom:GridLayout.LeftToRight  
+				columnSpacing: 0
+				rowSpacing: 0
+				ArkControls.ContextualMenu.Button {
+					id: floatBarHandleParent4
+					focusPolicy: Qt.NoFocus
+					type: floatQuick.type
+					iconSource: toolbar.floatbarQuick ? "qrc:/ark/icons/multicolor/toolbar_show" : "qrc:/ark/icons/toolbar_hide"
+					MouseArea {
+						id: floatBarHandle4
+						anchors.fill: parent
+						drag.target: floatQuick
+						onPressed: () => { pageSlider.requestMono = true;
+						floatQuick.originalX = floatQuick.x;
+						floatQuick.originalY = floatQuick.y	;
+						timeOutBeforeMovingTools=true}
+						property int snapThreshold: 30
+						onPressAndHold: () => { toolbar.floatbarQuick = !toolbar.floatbarQuick;}  
+						onReleased: () => { pageSlider.requestMono = false;timeOutBeforeMovingTools=false;}
+						onPositionChanged: {
+							if (drag.active) {
+								var centerX = floatQuick.x + floatQuick.width / 2
+								var centerY = floatQuick.y + floatQuick.height / 2
+								if (Math.abs(floatQuick.x) < snapThreshold) {
+									floatQuick.x = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180993&~ + floatQuick.~&214646099849&~ - ~&6504254477&~.~&214646099849&~) < snapThreshold) {
-									floatQuick.~&180993&~ = ~&6504254477&~.~&214646099849&~ - floatQuick.~&214646099849&~
+								else if (Math.abs(floatQuick.x + floatQuick.width - root.width) < snapThreshold) {
+									floatQuick.x = root.width - floatQuick.width
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(centerX - ~&6504254477&~.~&214646099849&~ / 2) < snapThreshold) {
-									floatQuick.~&180993&~ = ~&6504254477&~.~&214646099849&~ / 2 - floatQuick.~&214646099849&~ / 2
+								else if (Math.abs(centerX - root.width / 2) < snapThreshold) {
+									floatQuick.x = root.width / 2 - floatQuick.width / 2
 								}
-								~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180994&~) < snapThreshold) {
-									floatQuick.~&180994&~ = 0
+								if (Math.abs(floatQuick.y) < snapThreshold) {
+									floatQuick.y = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180994&~ + floatQuick.~&7082729686082&~ - ~&6504254477&~.~&7082729686082&~) < snapThreshold) {
-									floatQuick.~&180994&~ = ~&6504254477&~.~&7082729686082&~ - floatQuick.~&7082729686082&~
+								else if (Math.abs(floatQuick.y + floatQuick.height - root.height) < snapThreshold) {
+									floatQuick.y = root.height - floatQuick.height
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(centerY - ~&6504254477&~.~&7082729686082&~ / 2) < snapThreshold) {
-									floatQuick.~&180994&~ = ~&6504254477&~.~&7082729686082&~ / 2 - floatQuick.~&7082729686082&~ / 2
+								else if (Math.abs(centerY - root.height / 2) < snapThreshold) {
+									floatQuick.y = root.height / 2 - floatQuick.height / 2
 								}
-								~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180993&~) < snapThreshold && 
-									~&6502909715&~.~&197079679&~(floatQuick.~&180994&~) < snapThreshold) {
-									floatQuick.~&180993&~ = 0
-									floatQuick.~&180994&~ = 0
+								if (Math.abs(floatQuick.x) < snapThreshold && 
+									Math.abs(floatQuick.y) < snapThreshold) {
+									floatQuick.x = 0
+									floatQuick.y = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180993&~ + floatQuick.~&214646099849&~ - ~&6504254477&~.~&214646099849&~) < snapThreshold && 
-										 ~&6502909715&~.~&197079679&~(floatQuick.~&180994&~) < snapThreshold) {
-									floatQuick.~&180993&~ = ~&6504254477&~.~&214646099849&~ - floatQuick.~&214646099849&~
-									floatQuick.~&180994&~ = 0
+								else if (Math.abs(floatQuick.x + floatQuick.width - root.width) < snapThreshold && 
+										 Math.abs(floatQuick.y) < snapThreshold) {
+									floatQuick.x = root.width - floatQuick.width
+									floatQuick.y = 0
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180993&~) < snapThreshold && 
-										 ~&6502909715&~.~&197079679&~(floatQuick.~&180994&~ + floatQuick.~&7082729686082&~ - ~&6504254477&~.~&7082729686082&~) < snapThreshold) {
-									floatQuick.~&180993&~ = 0
-									floatQuick.~&180994&~ = ~&6504254477&~.~&7082729686082&~ - floatQuick.~&7082729686082&~
+								else if (Math.abs(floatQuick.x) < snapThreshold && 
+										 Math.abs(floatQuick.y + floatQuick.height - root.height) < snapThreshold) {
+									floatQuick.x = 0
+									floatQuick.y = root.height - floatQuick.height
 								}
-								~&6503784146&~ ~&5972376&~ (~&6502909715&~.~&197079679&~(floatQuick.~&180993&~ + floatQuick.~&214646099849&~ - ~&6504254477&~.~&214646099849&~) < snapThreshold && 
-										 ~&6502909715&~.~&197079679&~(floatQuick.~&180994&~ + floatQuick.~&7082729686082&~ - ~&6504254477&~.~&7082729686082&~) < snapThreshold) {
-									floatQuick.~&180993&~ = ~&6504254477&~.~&214646099849&~ - floatQuick.~&214646099849&~
-									floatQuick.~&180994&~ = ~&6504254477&~.~&7082729686082&~ - floatQuick.~&7082729686082&~
+								else if (Math.abs(floatQuick.x + floatQuick.width - root.width) < snapThreshold && 
+										 Math.abs(floatQuick.y + floatQuick.height - root.height) < snapThreshold) {
+									floatQuick.x = root.width - floatQuick.width
+									floatQuick.y = root.height - floatQuick.height
 								}
 							}
 						}
@@ -1060,169 +1060,169 @@ AFFECT [[1224665461898798997]]
 				}
 				
 
-				~&7712155293725601&~ {
-					~&5972374&~: ~&7713519083900865&~
-					~&214634455770&~: floatQuick.quickTool
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMovingTools
-							~&180995&~: 20
+				Repeater {
+					id: repeater
+					model: floatQuick.quickTool
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMovingTools
+							z: 20
 					}
 					
 					
-					~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~ {						
-						required property ~&197102514&~ ~&254539508423767444&~
-						~&233748328658231&~:  ~&233745975898428&~.floatbarQuick
-						~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-						~&6504337259&~: floatQuick.~&6504337259&~
+					ArkControls.ContextualMenu.Button {						
+						required property var modelData
+						visible:  toolbar.floatbarQuick
+						focusPolicy: Qt.NoFocus
+						type: floatQuick.type
 					
-						 readonly property ~&197102514&~ floatBar: floatQuick 
+						 readonly property var floatBar: floatQuick 
         	
-						~&8399601734642709923&~: {
-						~&214622607920&~ toolIcons = {
-						15: ~&"12472390807386460417&~,
-						17: ~&"1104274047935997048&~,
-						18: ~&"9093988532389370539&~, 
-						14: ~&"5204404160700829527&~,
-						13: ~&"14459632586516747131&~,
-						21: ~&"4188248842830809614&~,
-						16: ~&"5204259481269240318&~,
-						23: ~&"5204547061482173331&~,
-						12: ~&"1413836428252919100&~,
-						8: ~&"8173742602784935909&~,
-						6: ~&"1888152859074732210&~,
-						11: ~&"7322837842298105651&~,
-						90: ~&"15094524446772182502&~,
-						91: ~&"15094524446772064890&~
+						iconSource: {
+						const toolIcons = {
+						15: "qrc:/ark/icons/ballpoint_tip",
+						17: "qrc:/ark/icons/fineliner_tip",
+						18: "qrc:/ark/icons/highlighter_tip", 
+						14: "qrc:/ark/icons/pencil_tip",
+						13: "qrc:/ark/icons/mechanical_pencil_tip",
+						21: "qrc:/ark/icons/calligraphy_pen_tip",
+						16: "qrc:/ark/icons/marker_tip",
+						23: "qrc:/ark/icons/shader_tip",
+						12: "qrc:/ark/icons/paintbrush_tip",
+						8: "qrc:/ark/icons/erase_selection",
+						6: "qrc:/ark/icons/eraser",
+						11: "qrc:/ark/icons/selection_tool",
+						90: "qrc:/ark/icons/undo",
+						91: "qrc:/ark/icons/redo"
 						};
-						~&214622607920&~ thicknessIcon = {
-								1: ~&"5729937688328008154&~,
-								2: ~&"4902645675094746824&~,
-								3: ~&"4620502977728752666&~
+						const thicknessIcon = {
+								1: "qrc:/ark/icons/stroke_thin",
+								2: "qrc:/ark/icons/stroke_medium",
+								3: "qrc:/ark/icons/stroke_thick"
 						};
-						~&5972376&~ (~&254539508423767444&~.~&6504337259&~ == "Thick"){~&7083121450889&~ thicknessIcon[~&254539508423767444&~.~&254549061334391125&~];}
-						~&6503784146&~ ~&5972376&~(~&254539508423767444&~.~&233723474542109&~ && ~&254539508423767444&~.~&6504326343&~ == 11) {~&7083121450889&~ ~&"3254372506718633456&~}
-						~&6503784146&~{~&7083121450889&~ toolIcons[~&254539508423767444&~.~&6504326343&~];}}
-						~&6503165774&~{
-							~&233721384511543&~.~&197100796&~:~&7083038346995&~.~&197100796&~
-							~&233721384511543&~.~&6504027668&~:~&7083038346995&~.~&6504027668&~
-							~&490371291080887915&~: 5
-							~&214622605608&~: (~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~) ? ((~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~ && 
-							~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ === ~&254539508423767444&~.~&496319807495899597&~ && 
-							~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ === ~&254539508423767444&~.~&197098340&~ &&
-							~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~) ? ~&"214646069354&~:~&"214621299494&~ ):((~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~ && 
-							~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~) ? ~&"214646069354&~:~&"214621299494&~ ))
-							~&6504315758&~: (~&254539508423767444&~.~&254549061334391125&~)
-							~&233748328658231&~: ~&254539508423767444&~.~&6504326343&~ !=91 &&~&254539508423767444&~.~&6504326343&~ !=90 && ~&254539508423767444&~.~&6504326343&~ != 8 && ~&254539508423767444&~.~&6504326343&~ !=11 && !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ !="Thick"
-							~&6503823200&~.~&7082646817675&~: "Helvetica"
-							~&6503823200&~.~&7083316716977&~: ~&6502673216&~.~&6502529386&~
-							~&6503823200&~.pointSize: 18
+						if (modelData.type == "Thick"){return thicknessIcon[modelData.thickness];}
+						else if(modelData.capture && modelData.tool == 11) {return "qrc:/qml/images/icons/capture_tool.svg"}
+						else{return toolIcons[modelData.tool];}}
+						Text{
+							anchors.top:parent.top
+							anchors.left:parent.left
+							leftPadding: 5
+							color: (documentViewTools.isWritingTool(modelData.tool) ? ((documentViewTools.activePen.tool === modelData.tool && 
+							documentViewTools.activePen.color === modelData.paletteEnum && 
+							documentViewTools.activePen.colorCode === modelData.rgb &&
+							documentViewTools.activePen.thickness === modelData.thickness) ? "white":"black" ):((documentViewTools.activePen.tool === modelData.tool && 
+							documentViewTools.activePen.thickness === modelData.thickness) ? "white":"black" ))
+							text: (modelData.thickness)
+							visible: modelData.tool !=91 &&modelData.tool !=90 && modelData.tool != 8 && modelData.tool !=11 && !timeOutBeforeMovingTools && modelData.type !="Thick"
+							font.family: "Helvetica"
+							font.weight: Font.Bold
+							font.pointSize: 18
 						}
-						~&7713561545874130&~: {
-						~&5972376&~ (~&254539508423767444&~.~&6504337259&~ == "Tool" && ~&7842069035455457876&~.~&13186392338616216743&~(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~)){
-							~&7083121450889&~ (~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~)
+						selected: {
+						if (modelData.type == "Tool" && documentViewTools.isWritingTool(documentViewTools.activePen.tool)){
+							return (documentViewTools.activePen.tool === modelData.tool)
 						}
-						~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504337259&~ == "Thick" && ~&7842069035455457876&~.~&13186392338616216743&~(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~)){
-							~&7083121450889&~ (~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~)
+						else if (modelData.type == "Thick" && documentViewTools.isWritingTool(documentViewTools.activePen.tool)){
+							return (documentViewTools.activePen.thickness === modelData.thickness)
 						}
-						~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504337259&~ == "Colour" && ~&7842069035455457876&~.~&13186392338616216743&~(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~)){
-							~&7083121450889&~ (~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ === ~&254539508423767444&~.~&496319807495899597&~ && 
-						~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ === ~&254539508423767444&~.~&197098340&~)
+						else if (modelData.type == "Colour" && documentViewTools.isWritingTool(documentViewTools.activePen.tool)){
+							return (documentViewTools.activePen.color === modelData.paletteEnum && 
+						documentViewTools.activePen.colorCode === modelData.rgb)
 						}
 						
 						
-						~&6503784146&~ {
-						~&7083121450889&~ (~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~) ?
-						(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~ &&
-						~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ === ~&254539508423767444&~.~&496319807495899597&~ &&
-						~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ === ~&254539508423767444&~.~&197098340&~ &&
-						~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~):
-						(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ == 11 ?
-						(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~ &&~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~ && ~&6504254477&~.~&16888625050052348754&~ === ~&254539508423767444&~.~&233723474542109&~):
-						(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ === ~&254539508423767444&~.~&6504326343&~ &&~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ === ~&254539508423767444&~.~&254549061334391125&~)))
+						else {
+						return (documentViewTools.isWritingTool(modelData.tool) ?
+						(documentViewTools.activePen.tool === modelData.tool &&
+						documentViewTools.activePen.color === modelData.paletteEnum &&
+						documentViewTools.activePen.colorCode === modelData.rgb &&
+						documentViewTools.activePen.thickness === modelData.thickness):
+						(documentViewTools.activePen.tool == 11 ?
+						(documentViewTools.activePen.tool === modelData.tool &&documentViewTools.activePen.thickness === modelData.thickness && root.selectionToolMode === modelData.capture):
+						(documentViewTools.activePen.tool === modelData.tool &&documentViewTools.activePen.thickness === modelData.thickness)))
 						}
 						 
 						}
-						~&11058020975532475353&~: {
-							~&197091758&~ isQuickPen = ~&214625660372&~
-							~&197085552&~ (~&197091758&~ ~&180978&~ = 0; ~&180978&~ < ~&7713519083900865&~.~&214622615378&~; ~&180978&~++) {
-								~&197091758&~ ~&6503936152&~ = ~&7713519083900865&~.~&7082786471789&~(~&180978&~)
-								~&5972376&~ (~&6503936152&~ && ~&6503936152&~.~&7713561545874130&~ && 
-									~&6503936152&~.~&254539508423767444&~.~&6504337259&~ !== "Tool" && 
-									~&6503936152&~.~&254539508423767444&~.~&6504337259&~ !== "Thick" && 
-									~&6503936152&~.~&254539508423767444&~.~&6504337259&~ !== "Colour") {
-									isQuickPen = ~&6504329801&~
-									~&214621519406&~
+						onSelectedChanged: {
+							let isQuickPen = false
+							for (let i = 0; i < repeater.count; i++) {
+								let item = repeater.itemAt(i)
+								if (item && item.selected && 
+									item.modelData.type !== "Tool" && 
+									item.modelData.type !== "Thick" && 
+									item.modelData.type !== "Colour") {
+									isQuickPen = true
+									break
 								}
 							}
 							isQuickPenSelected = isQuickPen
 						}
 
-						~&254480451320573660&~.~&4464585548018432538&~:{
-							isQuickPenSelected = ~&214625660372&~;
+						Component.onDestruction:{
+							isQuickPenSelected = false;
 							floatQuick.saveQuickToolFile();
 						}
 						
-						~&254480451320573660&~.~&495334332051582499&~: {
+						Component.onCompleted: {
 							floatQuick.saveQuickToolFile();
 						}
-						~&254542236275632405&~: () => { 
-						~&5972376&~(~&254539508423767444&~.~&6504337259&~ === "Tool"){
-							~&233745975898428&~.~&254547531013823564&~(~&"233740920352621&~);
-							~&197091758&~ currentColour = ~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~;
-							~&197091758&~ currentRGB = ~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~;
-							~&197091758&~ currentThickness = ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~;
-							~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ = ~&254539508423767444&~.~&6504326343&~;
-							~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ = currentColour;
-							~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ = currentRGB;
-							~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ = currentThickness;
+						onClicked: () => { 
+						if(modelData.type === "Tool"){
+							toolbar.selectPen("primary");
+							let currentColour = documentViewTools.activePen.colorCode;
+							let currentRGB = documentViewTools.activePen.color;
+							let currentThickness = documentViewTools.activePen.thickness;
+							documentViewTools.activePen.tool = modelData.tool;
+							documentViewTools.activePen.colorCode = currentColour;
+							documentViewTools.activePen.color = currentRGB;
+							documentViewTools.activePen.thickness = currentThickness;
 							
 						}
-						~&6503784146&~ ~&5972376&~(~&254539508423767444&~.~&6504337259&~ === "Thick"  ){
-							~&5972376&~(~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~) && ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ != 11 && ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ != 8){
-							~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ = ~&254539508423767444&~.~&254549061334391125&~;}
+						else if(modelData.type === "Thick"  ){
+							if(documentViewTools.isWritingTool(modelData.tool) && documentViewTools.activePen.tool != 11 && documentViewTools.activePen.tool != 8){
+							documentViewTools.activePen.thickness = modelData.thickness;}
 							}
 
-						~&6503784146&~ ~&5972376&~(~&254539508423767444&~.~&6504337259&~ === "Colour"){
-								~&5972376&~(~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)){
-								~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ = ~&254539508423767444&~.~&496319807495899597&~;
-								~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ = ~&254539508423767444&~.~&197098340&~;}
+						else if(modelData.type === "Colour"){
+								if(documentViewTools.isWritingTool(modelData.tool)){
+								documentViewTools.activePen.color = modelData.paletteEnum;
+								documentViewTools.activePen.colorCode = modelData.rgb;}
 								}
 
-						~&6503784146&~ {
-										~&5972376&~(~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)){
-											~&233745975898428&~.~&254547531013823564&~(~&"233740920352621&~);
-											~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ = ~&254539508423767444&~.~&6504326343&~;
-											~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~ = ~&254539508423767444&~.~&496319807495899597&~;
-											~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ = ~&254539508423767444&~.~&197098340&~;
-											~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~ = ~&254539508423767444&~.~&254549061334391125&~;}
-										~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504326343&~ == 8 || ~&254539508423767444&~.~&6504326343&~ == 6){
+						else {
+										if(documentViewTools.isWritingTool(modelData.tool)){
+											toolbar.selectPen("primary");
+											documentViewTools.activePen.tool = modelData.tool;
+											documentViewTools.activePen.color = modelData.paletteEnum;
+											documentViewTools.activePen.colorCode = modelData.rgb;
+											documentViewTools.activePen.thickness = modelData.thickness;}
+										else if (modelData.tool == 8 || modelData.tool == 6){
 
-												~&233745975898428&~.selectFloatEraser(~&254539508423767444&~.~&6504326343&~);
-												~&7842069035455457876&~.~&254528381676974702&~.~&254549061334391125&~ = ~&254539508423767444&~.~&254549061334391125&~;
+												toolbar.selectFloatEraser(modelData.tool);
+												documentViewTools.eraserPen.thickness = modelData.thickness;
 										}
-										~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504326343&~ == 11){
+										else if (modelData.tool == 11){
 
 
 
-											~&5972376&~ (~&254539508423767444&~.~&233723474542109&~){
-											~&233745975898428&~.floatSelectSelectionMode(~&14984965058935971405&~.~&10171947580907719474&~.~&233703311363660&~)
+											if (modelData.capture){
+											toolbar.floatSelectSelectionMode(ToolbarModel.SelectionToolMode.Snippet)
 
 											}
-											~&6503784146&~{
+											else{
 
 
-											~&233745975898428&~.floatSelectSelectionMode(~&14984965058935971405&~.~&10171947580907719474&~.~&7081907948297&~)
+											toolbar.floatSelectSelectionMode(ToolbarModel.SelectionToolMode.Select)
 
 											}
-												~&233745975898428&~.~&3352491319205423503&~()
+												toolbar.selectSelection()
 										}
-										~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504326343&~ == 91){
-											~&11179472971324505115&~.~&6504243219&~();
+										else if (modelData.tool == 91){
+											sceneController.redo();
 										}
-										~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504326343&~ == 90){
-											~&11179472971324505115&~.~&6504360831&~();
+										else if (modelData.tool == 90){
+											sceneController.undo();
 										}
 											}}
 
@@ -1230,396 +1230,396 @@ AFFECT [[1224665461898798997]]
 
 
 
-						~&383135108587212173&~: () => {
+						onPressAndHold: () => {
 						
-						~&5972376&~ (~&254539508423767444&~.~&6504326343&~ == 91)
+						if (modelData.tool == 91)
 						{
-							floatQuick.quickTool = floatQuick.quickTool.~&7082656280847&~(
-							function(~&6503936152&~) {
-									~&7083121450889&~ !((~&6503936152&~.~&6504326343&~ == 91 && ~&6503936152&~.~&6504337259&~ == ~&"6503093235&~ && ~&6503936152&~.~&254549061334391125&~ == 0))}
+							floatQuick.quickTool = floatQuick.quickTool.filter(
+							function(item) {
+									return !((item.tool == 91 && item.type == "Redo" && item.thickness == 0))}
 									)
 											
 						}
 
-						~&6503784146&~ ~&5972376&~ (~&254539508423767444&~.~&6504326343&~ == 90)
+						else if (modelData.tool == 90)
 						{
-							floatQuick.quickTool = floatQuick.quickTool.~&7082656280847&~(
-							function(~&6503936152&~) {
-									~&7083121450889&~ !((~&6503936152&~.~&6504326343&~ == 90 && ~&6503936152&~.~&6504337259&~ == ~&"6503210847&~ && ~&6503936152&~.~&254549061334391125&~ == 0))}
+							floatQuick.quickTool = floatQuick.quickTool.filter(
+							function(item) {
+									return !((item.tool == 90 && item.type == "Undo" && item.thickness == 0))}
 									)
 											
 						
 						}
-						~&6503784146&~ ~&5972376&~(~&254539508423767444&~.~&6504337259&~ == "Tool"){
-							floatQuick.quickTool = floatQuick.quickTool.~&7082656280847&~(
-							function(~&6503936152&~) {
-									~&7083121450889&~ !((~&6503936152&~.~&6504337259&~ == "Tool" && ~&6503936152&~.~&6504326343&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~))}
+						else if(modelData.type == "Tool"){
+							floatQuick.quickTool = floatQuick.quickTool.filter(
+							function(item) {
+									return !((item.type == "Tool" && item.tool == documentViewTools.activePen.tool))}
 									)
 										
 						}
-						~&6503784146&~ ~&5972376&~(~&254539508423767444&~.~&6504337259&~ == "Colour"){
-							floatQuick.quickTool = floatQuick.quickTool.~&7082656280847&~(
-							function(~&6503936152&~) {
-									~&7083121450889&~ !((~&6503936152&~.~&6504337259&~ == "Colour" && ~&6503936152&~.~&197098340&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~ && ~&6503936152&~.~&496319807495899597&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~))}
+						else if(modelData.type == "Colour"){
+							floatQuick.quickTool = floatQuick.quickTool.filter(
+							function(item) {
+									return !((item.type == "Colour" && item.rgb == documentViewTools.activePen.colorCode && item.paletteEnum == documentViewTools.activePen.color))}
 									)
 							
 						}
-						~&6503784146&~ ~&5972376&~(~&254539508423767444&~.~&6504337259&~ == "Thick"){
-							floatQuick.quickTool = floatQuick.quickTool.~&7082656280847&~(
-							function(~&6503936152&~) {
-									~&7083121450889&~ !((~&6503936152&~.~&6504337259&~ == "Thick" && ~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~))}
+						else if(modelData.type == "Thick"){
+							floatQuick.quickTool = floatQuick.quickTool.filter(
+							function(item) {
+									return !((item.type == "Thick" && item.thickness == documentViewTools.activePen.thickness))}
 									)
 											
 						}
-						~&6503784146&~
+						else
 						{floatQuick.moveTool = !floatQuick.moveTool}
 					
 					}
 						
-						~&254501108490678590&~{
-							~&233748328658231&~: gridLayoutObject.~&6503819969&~ === ~&8398044571386570029&~.~&441360769245023669&~  && ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~) && !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ != "Colour" && ~&254539508423767444&~.~&6504337259&~ != "Tool" && ~&254539508423767444&~.~&6504337259&~ != "Thick"
-							~&214622605608&~: {
-								~&214622607920&~ colorMaps = {
+						Rectangle{
+							visible: gridLayoutObject.flow === GridLayout.LeftToRight  && documentViewTools.isWritingTool(modelData.tool) && !timeOutBeforeMovingTools && modelData.type != "Colour" && modelData.type != "Tool" && modelData.type != "Thick"
+							color: {
+								const colorMaps = {
 									23: {
-										1075912220: ~&"6503861980&~,
+										1075912220: "gray",
 										1946071552: "orangered",
 										2160099282: "magenta",
 										1295010528: "deepskyblue",
-										1724002610: ~&"197098276&~, 
+										1724002610: "red", 
 										2157042289: "forestgreen",
-										1945823001: ~&"7083395101253&~,
+										1945823001: "yellow",
 										1718932200: "cyan"
 									},
 									18: {
-										4294962549: ~&"7083395101253&~,
+										4294962549: "yellow",
 										4290702078: "deepskyblue", 
 										4294090495: "mediumvioletred",
 										4294951820: "orangered",
 										4289527685: "forestgreen",
-										4291282886: ~&"6503861980&~
+										4291282886: "gray"
 									}
 								};
 
-								~&214622607920&~ paletteColors = {
-									0: ~&"214621299494&~,
-									1: ~&"6503861980&~, 
-									2: ~&"214646069354&~,
+								const paletteColors = {
+									0: "black",
+									1: "gray", 
+									2: "white",
 									6: "blue",
-									7: ~&"197098276&~,
+									7: "red",
 									10: "limegreen", 
-									13: ~&"7083395101253&~,
+									13: "yellow",
 									11: "cyan", 
 									12: "magenta"
 								};
 
-								~&5972376&~ (~&254539508423767444&~.~&6504326343&~ === 23 || ~&254539508423767444&~.~&6504326343&~ === 18) {
-									~&7083121450889&~ colorMaps[~&254539508423767444&~.~&6504326343&~][~&254539508423767444&~.~&197098340&~] || "beige";
+								if (modelData.tool === 23 || modelData.tool === 18) {
+									return colorMaps[modelData.tool][modelData.rgb] || "beige";
 								}
 
-								~&7083121450889&~ paletteColors[~&254539508423767444&~.~&496319807495899597&~] || "beige";
+								return paletteColors[modelData.paletteEnum] || "beige";
 							}
-							~&233721384511543&~.~&7082507142622&~: ~&7083038346995&~.~&7082507142622&~
-							~&214646099849&~: ~&7083038346995&~.~&214646099849&~
-							~&7082729686082&~: (~&7083038346995&~.~&7082729686082&~/5)
-							~&15640708674084664669&~: ~&214625660372&~
+							anchors.bottom: parent.bottom
+							width: parent.width
+							height: (parent.height/5)
+							antialiasing: false
 						}
-						~&254501108490678590&~{
-							~&233748328658231&~: gridLayoutObject.~&6503819969&~ === ~&8398044571386570029&~.~&454090249410509812&~ && ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)&& !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ != "Colour" && ~&254539508423767444&~.~&6504337259&~ != "Tool" && ~&254539508423767444&~.~&6504337259&~ != "Thick"
-							~&214622605608&~: {
-								~&214622607920&~ colorMaps = {
+						Rectangle{
+							visible: gridLayoutObject.flow === GridLayout.TopToBottom && documentViewTools.isWritingTool(modelData.tool)&& !timeOutBeforeMovingTools && modelData.type != "Colour" && modelData.type != "Tool" && modelData.type != "Thick"
+							color: {
+								const colorMaps = {
 									23: {
-										1075912220: ~&"6503861980&~,
+										1075912220: "gray",
 										1946071552: "orangered",
 										2160099282: "magenta",
 										1295010528: "deepskyblue",
-										1724002610: ~&"197098276&~, 
+										1724002610: "red", 
 										2157042289: "forestgreen",
-										1945823001: ~&"7083395101253&~,
+										1945823001: "yellow",
 										1718932200: "cyan"
 									},
 									18: {
-										4294962549: ~&"7083395101253&~,
+										4294962549: "yellow",
 										4290702078: "deepskyblue", 
 										4294090495: "mediumvioletred",
 										4294951820: "orangered",
 										4289527685: "forestgreen",
-										4291282886: ~&"6503861980&~
+										4291282886: "gray"
 									}
 								};
 
-								~&214622607920&~ paletteColors = {
-									0: ~&"214621299494&~,
-									1: ~&"6503861980&~, 
-									2: ~&"214646069354&~,
+								const paletteColors = {
+									0: "black",
+									1: "gray", 
+									2: "white",
 									6: "blue",
-									7: ~&"197098276&~,
+									7: "red",
 									10: "limegreen", 
-									13: ~&"7083395101253&~,
+									13: "yellow",
 									11: "cyan", 
 									12: "magenta"
 								};
 
-								~&5972376&~ (~&254539508423767444&~.~&6504326343&~ === 23 || ~&254539508423767444&~.~&6504326343&~ === 18) {
-									~&7083121450889&~ colorMaps[~&254539508423767444&~.~&6504326343&~][~&254539508423767444&~.~&197098340&~] || "beige";
+								if (modelData.tool === 23 || modelData.tool === 18) {
+									return colorMaps[modelData.tool][modelData.rgb] || "beige";
 								}
 
-								~&7083121450889&~ paletteColors[~&254539508423767444&~.~&496319807495899597&~] || "beige";
+								return paletteColors[modelData.paletteEnum] || "beige";
 							}
-							~&233721384511543&~.~&214640173127&~:  ~&7083038346995&~.~&214640173127&~
-							~&214646099849&~:          (~&7083038346995&~.~&214646099849&~/5)
-							~&7082729686082&~:         (~&7083038346995&~.~&7082729686082&~)
-							~&15640708674084664669&~: ~&214625660372&~
+							anchors.right:  parent.right
+							width:          (parent.width/5)
+							height:         (parent.height)
+							antialiasing: false
 							
 							
 							
 						}
 						
-						~&254501108490678590&~{
-							~&233748328658231&~: ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)&& !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ == "Colour" && ~&254539508423767444&~.~&6504337259&~ != "Tool" && ~&254539508423767444&~.~&6504337259&~ != "Thick"
-							~&214622605608&~: ~&"214646069354&~
+						Rectangle{
+							visible: documentViewTools.isWritingTool(modelData.tool)&& !timeOutBeforeMovingTools && modelData.type == "Colour" && modelData.type != "Tool" && modelData.type != "Thick"
+							color: "white"
 							
-							~&233721384511543&~.~&3441383163516681764&~ :  ~&7083038346995&~.~&3441383163516681764&~
-							~&233721384511543&~.~&12826966400293002612&~ :  ~&7083038346995&~.~&12826966400293002612&~
-							~&214646099849&~:          (2*~&7083038346995&~.~&214646099849&~/5+4)
-							~&7082729686082&~:         (2*~&7083038346995&~.~&7082729686082&~/5+4)
-							~&15640708674084664669&~: ~&214625660372&~
-							~&7083116119249&~: 180
+							anchors.verticalCenter :  parent.verticalCenter
+							anchors.horizontalCenter :  parent.horizontalCenter
+							width:          (2*parent.width/5+4)
+							height:         (2*parent.height/5+4)
+							antialiasing: false
+							radius: 180
 							
 							
 						}
-						~&254501108490678590&~{
-							~&233748328658231&~: ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)&& !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ == "Colour" && ~&254539508423767444&~.~&6504337259&~ != "Tool" && ~&254539508423767444&~.~&6504337259&~ != "Thick"
-							~&214622605608&~: {
-								~&214622607920&~ colorMaps = {
+						Rectangle{
+							visible: documentViewTools.isWritingTool(modelData.tool)&& !timeOutBeforeMovingTools && modelData.type == "Colour" && modelData.type != "Tool" && modelData.type != "Thick"
+							color: {
+								const colorMaps = {
 									
-										1075912220: ~&"6503861980&~,
+										1075912220: "gray",
 										1946071552: "orangered",
 										2160099282: "magenta",
 										1295010528: "deepskyblue",
-										1724002610: ~&"197098276&~, 
+										1724002610: "red", 
 										2157042289: "forestgreen",
-										1945823001: ~&"7083395101253&~,
+										1945823001: "yellow",
 										1718932200: "cyan",
 									
-										4294962549: ~&"7083395101253&~,
+										4294962549: "yellow",
 										4290702078: "deepskyblue", 
 										4294090495: "mediumvioletred",
 										4294951820: "orangered",
 										4289527685: "forestgreen",
-										4291282886: ~&"6503861980&~
+										4291282886: "gray"
 									
 								};
 
-								~&214622607920&~ paletteColors = {
-									0: ~&"214621299494&~,
-									1: ~&"6503861980&~, 
-									2: ~&"214646069354&~,
+								const paletteColors = {
+									0: "black",
+									1: "gray", 
+									2: "white",
 									6: "blue",
-									7: ~&"197098276&~,
+									7: "red",
 									10: "limegreen", 
-									13: ~&"7083395101253&~,
+									13: "yellow",
 									11: "cyan", 
 									12: "magenta"
 								};
 
 								
-								~&5972376&~ (~&254539508423767444&~.~&496319807495899597&~ == 9){
-									~&7083121450889&~ colorMaps[~&254539508423767444&~.~&197098340&~] || "beige";
+								if (modelData.paletteEnum == 9){
+									return colorMaps[modelData.rgb] || "beige";
 								}
-								~&6503784146&~{
+								else{
 									
-									~&7083121450889&~ paletteColors[~&254539508423767444&~.~&496319807495899597&~] ;
+									return paletteColors[modelData.paletteEnum] ;
 								}
 							}
-							~&233721384511543&~.~&3441383163516681764&~ :  ~&7083038346995&~.~&3441383163516681764&~
-							~&233721384511543&~.~&12826966400293002612&~ :  ~&7083038346995&~.~&12826966400293002612&~
-							~&214646099849&~:          (2*~&7083038346995&~.~&214646099849&~/5)
-							~&7082729686082&~:         (2*~&7083038346995&~.~&7082729686082&~/5)
-							~&15640708674084664669&~: ~&214625660372&~
-							~&7083116119249&~: 180
+							anchors.verticalCenter :  parent.verticalCenter
+							anchors.horizontalCenter :  parent.horizontalCenter
+							width:          (2*parent.width/5)
+							height:         (2*parent.height/5)
+							antialiasing: false
+							radius: 180
 							
 							
 						}
 						 
 							
-						~&254501108490678590&~{
-							~&233748328658231&~: {
-							~&214622607920&~ colorMaps = {
+						Rectangle{
+							visible: {
+							const colorMaps = {
 									23: {
-										1075912220: ~&"6503861980&~,
+										1075912220: "gray",
 										1946071552: "orangered",
 										2160099282: "magenta",
 										1295010528: "deepskyblue",
-										1724002610: ~&"197098276&~, 
+										1724002610: "red", 
 										2157042289: "forestgreen",
-										1945823001: ~&"7083395101253&~,
+										1945823001: "yellow",
 										1718932200: "cyan"
 									},
 									18: {
-										4294962549: ~&"7083395101253&~,
+										4294962549: "yellow",
 										4290702078: "deepskyblue", 
 										4294090495: "mediumvioletred",
 										4294951820: "orangered",
 										4289527685: "forestgreen",
-										4291282886: ~&"6503861980&~
+										4291282886: "gray"
 									}
 								};
 								
-							 ~&214622607920&~ paletteColors = {
-									0: ~&"214621299494&~,
-									1: ~&"6503861980&~, 
-									2: ~&"214646069354&~,
+							 const paletteColors = {
+									0: "black",
+									1: "gray", 
+									2: "white",
 									6: "blue",
-									7: ~&"197098276&~,
+									7: "red",
 									10: "limegreen", 
-									13: ~&"7083395101253&~,
+									13: "yellow",
 									11: "cyan", 
 									12: "magenta"
 								};
-							~&5972376&~ ((~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ == 23 && !colorMaps[23][~&254539508423767444&~.~&197098340&~]) ||(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ == 18 && !colorMaps[18][~&254539508423767444&~.~&197098340&~]))
+							if ((documentViewTools.activePen.tool == 23 && !colorMaps[23][modelData.rgb]) ||(documentViewTools.activePen.tool == 18 && !colorMaps[18][modelData.rgb]))
 							{
-							~&7083121450889&~ ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)&& !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ == "Colour" 
+							return documentViewTools.isWritingTool(modelData.tool)&& !timeOutBeforeMovingTools && modelData.type == "Colour" 
 							}
-							~&6503784146&~ ~&5972376&~ ((~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ != 23 && colorMaps[23][~&254539508423767444&~.~&197098340&~]) ||(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ != 18 && colorMaps[18][~&254539508423767444&~.~&197098340&~])){
-								~&7083121450889&~ ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)&& !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ == "Colour" 
+							else if ((documentViewTools.activePen.tool != 23 && colorMaps[23][modelData.rgb]) ||(documentViewTools.activePen.tool != 18 && colorMaps[18][modelData.rgb])){
+								return documentViewTools.isWritingTool(modelData.tool)&& !timeOutBeforeMovingTools && modelData.type == "Colour" 
 							}
-							~&6503784146&~
+							else
 							{
-								~&7083121450889&~ ~&214625660372&~;
+								return false;
 							}
 							}
-							~&214622605608&~: ~&"197098276&~
+							color: "red"
 
 							
-							~&233721384511543&~.~&3441383163516681764&~ :  ~&7083038346995&~.~&3441383163516681764&~
-							~&233721384511543&~.~&12826966400293002612&~ :  ~&7083038346995&~.~&12826966400293002612&~
-							~&214646099849&~:          (8)
-							~&7082729686082&~:         (~&7083038346995&~.~&7082729686082&~)
-							~&15640708674084664669&~: ~&214625660372&~
-							~&7083116119249&~: 180
+							anchors.verticalCenter :  parent.verticalCenter
+							anchors.horizontalCenter :  parent.horizontalCenter
+							width:          (8)
+							height:         (parent.height)
+							antialiasing: false
+							radius: 180
 						}
-						~&254501108490678590&~{
+						Rectangle{
 							
 							
-							~&233748328658231&~: {
-							~&214622607920&~ colorMaps = {
+							visible: {
+							const colorMaps = {
 									23: {
-										1075912220: ~&"6503861980&~,
+										1075912220: "gray",
 										1946071552: "orangered",
 										2160099282: "magenta",
 										1295010528: "deepskyblue",
-										1724002610: ~&"197098276&~, 
+										1724002610: "red", 
 										2157042289: "forestgreen",
-										1945823001: ~&"7083395101253&~,
+										1945823001: "yellow",
 										1718932200: "cyan"
 									},
 									18: {
-										4294962549: ~&"7083395101253&~,
+										4294962549: "yellow",
 										4290702078: "deepskyblue", 
 										4294090495: "mediumvioletred",
 										4294951820: "orangered",
 										4289527685: "forestgreen",
-										4291282886: ~&"6503861980&~
+										4291282886: "gray"
 									}
 								};
 								
-							 ~&214622607920&~ paletteColors = {
-									0: ~&"214621299494&~,
-									1: ~&"6503861980&~, 
-									2: ~&"214646069354&~,
+							 const paletteColors = {
+									0: "black",
+									1: "gray", 
+									2: "white",
 									6: "blue",
-									7: ~&"197098276&~,
+									7: "red",
 									10: "limegreen", 
-									13: ~&"7083395101253&~,
+									13: "yellow",
 									11: "cyan", 
 									12: "magenta"
 								};
-							~&5972376&~ ((~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ == 23 && !colorMaps[23][~&254539508423767444&~.~&197098340&~]) ||(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ == 18 && !colorMaps[18][~&254539508423767444&~.~&197098340&~]))
+							if ((documentViewTools.activePen.tool == 23 && !colorMaps[23][modelData.rgb]) ||(documentViewTools.activePen.tool == 18 && !colorMaps[18][modelData.rgb]))
 							{
-							~&7083121450889&~ ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)&& !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ == "Colour" 
+							return documentViewTools.isWritingTool(modelData.tool)&& !timeOutBeforeMovingTools && modelData.type == "Colour" 
 							}
-							~&6503784146&~ ~&5972376&~ ((~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ != 23 && colorMaps[23][~&254539508423767444&~.~&197098340&~]) ||(~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~ != 18 && colorMaps[18][~&254539508423767444&~.~&197098340&~])){
-								~&7083121450889&~ ~&7842069035455457876&~.~&13186392338616216743&~(~&254539508423767444&~.~&6504326343&~)&& !timeOutBeforeMovingTools && ~&254539508423767444&~.~&6504337259&~ == "Colour" 
+							else if ((documentViewTools.activePen.tool != 23 && colorMaps[23][modelData.rgb]) ||(documentViewTools.activePen.tool != 18 && colorMaps[18][modelData.rgb])){
+								return documentViewTools.isWritingTool(modelData.tool)&& !timeOutBeforeMovingTools && modelData.type == "Colour" 
 							}
-							~&6503784146&~
+							else
 							{
-								~&7083121450889&~ ~&214625660372&~;
+								return false;
 							}
 							}
-							~&214622605608&~: ~&"197098276&~
+							color: "red"
 
 							
-							~&233721384511543&~.~&3441383163516681764&~ :  ~&7083038346995&~.~&3441383163516681764&~
-							~&233721384511543&~.~&12826966400293002612&~ :  ~&7083038346995&~.~&12826966400293002612&~
-							~&214646099849&~:          (~&7083038346995&~.~&214646099849&~)
-							~&7082729686082&~:         (8)
-							~&15640708674084664669&~: ~&214625660372&~
-							~&7083116119249&~: 180
+							anchors.verticalCenter :  parent.verticalCenter
+							anchors.horizontalCenter :  parent.horizontalCenter
+							width:          (parent.width)
+							height:         (8)
+							antialiasing: false
+							radius: 180
 						}
 						
 					}
 				}
 				
 				
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~ {
-					~&5972374&~: floatquickMoveLeft
-					~&233748328658231&~: ~&233745975898428&~.floatbarQuick && ~&233745975898428&~.~&7712989577739634&~ && floatQuick.moveTool
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMovingTools
+				ArkControls.ContextualMenu.Button {
+					id: floatquickMoveLeft
+					visible: toolbar.floatbarQuick && toolbar.expanded && floatQuick.moveTool
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMovingTools
 					}
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: floatQuick.~&6504337259&~
-					~&8399601734642709923&~: gridLayoutObject.~&6503819969&~ === ~&8398044571386570029&~.~&441360769245023669&~? ~&"5203726458251154181&~ : ~&"8609871180810563551&~
-					~&254542236275632405&~: () => { ~&214622607920&~ ~&214629676161&~ = floatQuick.quickTool.~&254529420688331106&~(function(~&6503936152&~) {
-						~&7083121450889&~ (
-						~&7842069035455457876&~.~&13186392338616216743&~(~&6503936152&~.~&6504326343&~)?((~&6503936152&~.~&6504326343&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~) &&
-							   (~&6503936152&~.~&197098340&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~) && 
-							   (~&6503936152&~.~&496319807495899597&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~) &&
-							   (~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~)):(
-							   (~&6503936152&~.~&6504326343&~ == 11)?
-							   ((~&6503936152&~.~&233723474542109&~ == ~&6504254477&~.~&16888625050052348754&~) &&
-							   (~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~))
+					focusPolicy: Qt.NoFocus
+					type: floatQuick.type
+					iconSource: gridLayoutObject.flow === GridLayout.LeftToRight? "qrc:/ark/icons/arrow_left" : "qrc:/ark/icons/arrow_up"
+					onClicked: () => { const index = floatQuick.quickTool.findIndex(function(item) {
+						return (
+						documentViewTools.isWritingTool(item.tool)?((item.tool == documentViewTools.activePen.tool) &&
+							   (item.rgb == documentViewTools.activePen.colorCode) && 
+							   (item.paletteEnum == documentViewTools.activePen.color) &&
+							   (item.thickness == documentViewTools.activePen.thickness)):(
+							   (item.tool == 11)?
+							   ((item.capture == root.selectionToolMode) &&
+							   (item.thickness == documentViewTools.activePen.thickness))
 							   :
-							   ((~&6503936152&~.~&6504326343&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~) &&
-							   (~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~))
+							   ((item.tool == documentViewTools.activePen.tool) &&
+							   (item.thickness == documentViewTools.activePen.thickness))
 							   )
 							   );
 					});
 
-					~&5972376&~ (~&214629676161&~ !=0){floatQuick.moveQuickTool(~&214629676161&~,~&214629676161&~-1);
+					if (index !=0){floatQuick.moveQuickTool(index,index-1);
 					floatQuick.saveQuickToolFile();}	}
 				}
-				~&425121728314878811&~.~&16765000136167945189&~.~&7081261925573&~ {
-					~&5972374&~: floatquickMoveRight
-					~&233748328658231&~: ~&233745975898428&~.floatbarQuick && ~&233745975898428&~.~&7712989577739634&~ && floatQuick.moveTool
-					~&254501108490678590&~ {
-							~&233721384511543&~.~&6503816592&~: ~&7083038346995&~
-							~&214622605608&~: ~&"214646069354&~
-							~&233748328658231&~: timeOutBeforeMovingTools
+				ArkControls.ContextualMenu.Button {
+					id: floatquickMoveRight
+					visible: toolbar.floatbarQuick && toolbar.expanded && floatQuick.moveTool
+					Rectangle {
+							anchors.fill: parent
+							color: "white"
+							visible: timeOutBeforeMovingTools
 					}
-					~&481641799955318521&~: ~&5971598&~.~&233696851602406&~
-					~&6504337259&~: floatQuick.~&6504337259&~
-					~&8399601734642709923&~: gridLayoutObject.~&6503819969&~ === ~&8398044571386570029&~.~&441360769245023669&~? ~&"5702276458909383512&~ : ~&"5203726458250878130&~
-					~&254542236275632405&~: () => { ~&214622607920&~ ~&214629676161&~ = floatQuick.quickTool.~&254529420688331106&~(function(~&6503936152&~) {
-																~&7083121450889&~ (
-						~&7842069035455457876&~.~&13186392338616216743&~(~&6503936152&~.~&6504326343&~)?((~&6503936152&~.~&6504326343&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~) &&
-							   (~&6503936152&~.~&197098340&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254525455067777027&~) &&
-							   (~&6503936152&~.~&496319807495899597&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&214622605608&~) &&
-							   (~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~)):(
-							   (~&6503936152&~.~&6504326343&~ == 11)?
-							   ((~&6503936152&~.~&233723474542109&~ == ~&6504254477&~.~&16888625050052348754&~) &&
-							   (~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~))
+					focusPolicy: Qt.NoFocus
+					type: floatQuick.type
+					iconSource: gridLayoutObject.flow === GridLayout.LeftToRight? "qrc:/ark/icons/arrow_right" : "qrc:/ark/icons/arrow_down"
+					onClicked: () => { const index = floatQuick.quickTool.findIndex(function(item) {
+																return (
+						documentViewTools.isWritingTool(item.tool)?((item.tool == documentViewTools.activePen.tool) &&
+							   (item.rgb == documentViewTools.activePen.colorCode) &&
+							   (item.paletteEnum == documentViewTools.activePen.color) &&
+							   (item.thickness == documentViewTools.activePen.thickness)):(
+							   (item.tool == 11)?
+							   ((item.capture == root.selectionToolMode) &&
+							   (item.thickness == documentViewTools.activePen.thickness))
 							   :
-							   ((~&6503936152&~.~&6504326343&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&6504326343&~) &&
-							   (~&6503936152&~.~&254549061334391125&~ == ~&7842069035455457876&~.~&254522140932088040&~.~&254549061334391125&~))
+							   ((item.tool == documentViewTools.activePen.tool) &&
+							   (item.thickness == documentViewTools.activePen.thickness))
 							   )
 							   );
 											   });
 
 
-									floatQuick.moveQuickTool(~&214629676161&~,~&214629676161&~+1);
+									floatQuick.moveQuickTool(index,index+1);
 									floatQuick.saveQuickToolFile();}
 				}}}}
 	END TRAVERSE
