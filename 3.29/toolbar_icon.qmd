@@ -74,9 +74,15 @@ END TRAVERSE
 										3 : ~&"7083395101253&~,
 										5 : "mediumvioletred",
 										4 : "forestgreen",
-										16 : ~&"6503861980&~,
-										14: "deepskyblue",
-										15: "orangered",
+										8 : ~&"6503861980&~
+									}
+									,
+									4290702078 : {
+										9: "deepskyblue"
+										
+									},
+									4294951820 : {
+										9: "orangered",
 									},
 								};
 
